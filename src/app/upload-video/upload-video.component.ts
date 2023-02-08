@@ -4,7 +4,7 @@ import {VideoService} from "../video.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {NewVideoDto} from "../dto/new-video-dto";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-upload-video',
@@ -35,14 +35,19 @@ export class UploadVideoComponent {
   tags: string[] = [];
   /*------------------------------------------------*/
   // selectedImageName = '';
+  streamUrl!: string;
 
 
-  constructor(private videoService: VideoService) {
+  constructor(private videoService: VideoService, private matSnackBar: MatSnackBar) {
+    this.videoService.getVideo(50).subscribe(data => {
+      this.streamUrl = data.streamUrl;
+    })
     this.uploadVideoForm = new FormGroup( {
       title: this.title,
       description: this.description,
       videoStatus: this.videoStatus,
     })
+
   }
 
   add(event: MatChipInputEvent): void {
@@ -163,7 +168,7 @@ export class UploadVideoComponent {
     newVideoFormData.append('videoFile', this.videoFile);
     newVideoFormData.append('previewFile', this.previewFile);
     this.videoService.uploadVideo(newVideoFormData).subscribe(data => {
-      //TODO matsnackbar
+      this.matSnackBar.open("Видео успешно загружено на сервер", "Ок", {duration: 3000 });
     })
   }
 }

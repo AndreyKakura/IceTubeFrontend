@@ -1,9 +1,11 @@
-export interface NewVideoDto {
+export interface VideoDto {
+
+  id: number,
   title: string;
   description: string;
   tags: Array<string>;
   videoStatus: string;
-  videoFile: File;
-  previewFile: File;
+  streamUrl: string;
+  previewUrl: string;
 
 }

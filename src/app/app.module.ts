@@ -19,12 +19,15 @@ import {VgCoreModule} from "@videogular/ngx-videogular/core";
 import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
 import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
 import {VgControlsModule} from "@videogular/ngx-videogular/controls";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { VideoPlayerComponent } from './video-player/video-player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadVideoComponent,
-    HeaderComponent
+    HeaderComponent,
+    VideoPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import {VgControlsModule} from "@videogular/ngx-videogular/controls";
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
