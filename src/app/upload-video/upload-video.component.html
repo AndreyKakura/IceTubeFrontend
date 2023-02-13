@@ -27,9 +27,9 @@
           <mat-label>Тэги</mat-label>
           <mat-chip-grid #chipGrid aria-label="Введите тэги">
             <mat-chip-row *ngFor="let tag of tags"
-                          (removed)="remove(tag)"
+                          (removed)="removeTag(tag)"
                           [editable]="true"
-                          (edited)="edit(tag, $event)"
+                          (edited)="editTag(tag, $event)"
                           [aria-description]="'нажмите enter чтобы редактировать ' + tag">
               {{tag}}
               <button matChipRemove [attr.aria-label]="'удилать ' + tag">
@@ -40,7 +40,7 @@
                    [matChipInputFor]="chipGrid"
                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                    [matChipInputAddOnBlur]="addOnBlur"
-                   (matChipInputTokenEnd)="add($event)"/>
+                   (matChipInputTokenEnd)="addTag($event)"/>
           </mat-chip-grid>
         </mat-form-field>
       </div>

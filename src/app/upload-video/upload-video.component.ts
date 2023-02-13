@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-import {VideoService} from "../video.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {VideoService} from "../service/video.service";
 
 @Component({
   selector: 'app-upload-video',
@@ -40,6 +40,7 @@ export class UploadVideoComponent {
 
   constructor(private videoService: VideoService, private matSnackBar: MatSnackBar) {
     this.videoService.getVideo(50).subscribe(data => {
+      console.log(data.streamUrl);
       this.streamUrl = data.streamUrl;
     })
     this.uploadVideoForm = new FormGroup( {
@@ -50,7 +51,7 @@ export class UploadVideoComponent {
 
   }
 
-  add(event: MatChipInputEvent): void {
+  addTag(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
@@ -62,7 +63,7 @@ export class UploadVideoComponent {
     event.chipInput!.clear();
   }
 
-  remove(value: string): void {
+  removeTag(value: string): void {
     const index = this.tags.indexOf(value);
 
     if (index >= 0) {
@@ -71,12 +72,12 @@ export class UploadVideoComponent {
   }
 
 
-  edit(tag: string, event: MatChipEditedEvent) {
+  editTag(tag: string, event: MatChipEditedEvent) {
     const value = event.value.trim();
 
     // Remove tag if it no longer has a name
     if (!value) {
-      this.remove(tag);
+      this.removeTag(tag);
       return;
     }
 
@@ -90,51 +91,51 @@ export class UploadVideoComponent {
 
   /*------------------------------------------------*/
 
-  public dropped(files: NgxFileDropEntry[]) {
-    this.files = files;
-    for (const droppedFile of files) {
+  // public dropped(files: NgxFileDropEntry[]) {
+  //   this.files = files;
+  //   for (const droppedFile of files) {
+  //
+  //     // Is it a file?
+  //     if (droppedFile.fileEntry.isFile) {
+  //       this.fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+  //       this.fileEntry.file((file: File) => {
+  //
+  //         // Here you can access the real file
+  //         console.log(droppedFile.relativePath, file);
+  //
+  //         this.fileUploaded = true
+  //         /**
+  //          // You could upload it like this:
+  //          const formData = new FormData()
+  //          formData.append('logo', file, relativePath)
+  //
+  //          // Headers
+  //          const headers = new HttpHeaders({
+  //           'security-token': 'mytoken'
+  //         })
+  //
+  //          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
+  //          .subscribe(data => {
+  //           // Sanitized logo returned from backend
+  //         })
+  //          **/
+  //
+  //       });
+  //     } else {
+  //       // It was a directory (empty directories are added, otherwise only files)
+  //       const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+  //       console.log(droppedFile.relativePath, fileEntry);
+  //     }
+  //   }
+  // }
 
-      // Is it a file?
-      if (droppedFile.fileEntry.isFile) {
-        this.fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        this.fileEntry.file((file: File) => {
-
-          // Here you can access the real file
-          console.log(droppedFile.relativePath, file);
-
-          this.fileUploaded = true
-          /**
-           // You could upload it like this:
-           const formData = new FormData()
-           formData.append('logo', file, relativePath)
-
-           // Headers
-           const headers = new HttpHeaders({
-            'security-token': 'mytoken'
-          })
-
-           this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
-           .subscribe(data => {
-            // Sanitized logo returned from backend
-          })
-           **/
-
-        });
-      } else {
-        // It was a directory (empty directories are added, otherwise only files)
-        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        console.log(droppedFile.relativePath, fileEntry);
-      }
-    }
-  }
-
-  public fileOver(event: any){
-    console.log(event);
-  }
-
-  public fileLeave(event: any){
-    console.log(event);
-  }
+  // public fileOver(event: any){
+  //   console.log(event);
+  // }
+  //
+  // public fileLeave(event: any){
+  //   console.log(event);
+  // }
 
   // uploadVideo() {
   //   console.log(this.fileEntry);

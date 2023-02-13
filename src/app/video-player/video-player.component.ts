@@ -16,7 +16,7 @@ export class VideoPlayerComponent {
 
 
   getSubtitles() : Observable<any>{
-    console.log(this.httpClient.get<any>("http://localhost:8080/api/v1/video/subtitles"));
-    return this.httpClient.get<any>("http://localhost:8080/api/v1/video/subtitles");
+    console.log(this.httpClient.get<any>("api/video/subtitles"));
+    return this.httpClient.get<any>("api/video/subtitles");
   }
 }
