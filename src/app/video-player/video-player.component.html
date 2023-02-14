@@ -1,7 +1,8 @@
-<vg-player>
+<vg-player class="p-b-50">
   <vg-overlay-play></vg-overlay-play>
   <vg-buffering></vg-buffering>
 
+  <!--  <vg-controls [vgAutohide]="true" [vgAutohideTime]="1">-->
   <vg-controls>
     <vg-play-pause></vg-play-pause>
     <vg-playback-button></vg-playback-button>
@@ -24,5 +25,13 @@
   </vg-controls>
   <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto">
     <source src="{{streamUrl}}" type="video/mp4">
+    <track kind="subtitles" label="Russian" src="../../assets/002.vtt" srclang="ru"/>
   </video>
 </vg-player>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquam, animi asperiores aspernatur at dolorum eveniet
+  excepturi, fuga itaque laborum laudantium molestias mollitia nostrum nulla perferendis saepe sapiente sint tenetur
+  ullam vitae. Alias culpa, illo iure praesentium quas quo sunt tempora tempore. Asperiores at atque cum facere in
+  ipsam, ipsum magni molestias necessitatibus nostrum, numquam odio officia quam recusandae sequi soluta voluptatum.
+  Aliquam at aut consequatur eligendi est et ex fuga hic ipsa iste numquam placeat quis reiciendis, soluta totam ullam
+  voluptatibus! Cumque dolorum error exercitationem illo impedit maiores numquam optio, perspiciatis saepe! Aperiam
+  exercitationem minima pariatur veniam vero voluptatem.</p>

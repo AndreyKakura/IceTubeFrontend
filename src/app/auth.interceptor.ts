@@ -14,85 +14,65 @@ import {AuthResponseDto} from "./dto/auth-response-dto";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-
   private isRefreshing = false;
 
-  constructor(private authService: AuthService, private httpClient: HttpClient) {
+  constructor(private authService: AuthService) {
   }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (localStorage.getItem("access_token") == null) {
-      return next.handle(request);
-    }
-    console.log("isRefreshing : " + this.isRefreshing);
-    request = request.clone({
-      headers: request.headers.set("Authorization", "Bearer " +
-        (this.isRefreshing ? localStorage.getItem('refresh_token') : localStorage.getItem("access_token")))
-    })
 
-    return next.handle(request).pipe(
-      catchError((error) => {
-        if (
-          error instanceof HttpErrorResponse &&
-          !request.url.includes('auth/token') &&
-          error.status === 401
-        ) {
-          console.log("inter c 401 handle401 start")
-          return this.handle401Error(request, next);
-        }
-        console.log("inter c not 401 throw error")
-        return throwError(() => error);
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // let authservice = this.inject.get(AuthService);
+    let authreq = request;
+    if (this.authService.getAccessToken() == null) {
+      // this.authService.goToLogin();
+      return next.handle(request);
+    } else {
+      // console.log("goint to add access token ", this.authService.getAccessToken())
+      authreq = this.AddTokenheader(request, this.authService.getAccessToken());
+      return next.handle(authreq).pipe(
+        catchError(errordata => {
+          if (errordata.status === 401) {
+            if(this.authService.getAccessToken() == null) {
+              this.authService.goToLogin();
+            }
+            if (this.isRefreshing) {
+              this.isRefreshing = false;
+              console.log("intercept caught 401, is refreshing = true");
+              console.log("intercept initialized logout");
+              this.authService.logout();
+            } else {
+              return this.handleRefreshToken(request, next);
+            }
+            // need to implement logout
+            // this.authService.logout(); //todo
+            // refresh token logic
+          }
+          return throwError(errordata);
+        })
+      );
+    }
+  }
+
+  handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
+    this.isRefreshing = true;
+    return this.authService.generateRefreshToken().pipe(
+      switchMap((data: any) => {
+        this.authService.SaveTokens(data);
+        this.isRefreshing = false;
+        return next.handle(this.AddTokenheader(request, data.accessToken))
+      }),
+      catchError(errodata => {
+        // console.log("handler initialized logout");
+        // this.authService.logout();
+        console.log("handler caught error, throwing error")
+        return throwError(errodata)//todo
       })
     );
   }
 
-  private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-    if (!this.isRefreshing) {
-      this.isRefreshing = true;
-
-      if (localStorage.getItem('access_token') != null) {
-        return this.refreshToken2(request, next).pipe(
-          switchMap(() => {
-            this.isRefreshing = false;
-
-            return next.handle(request);
-          }),
-          catchError((error) => {
-            this.isRefreshing = false;
-
-            if (error.status == '403') {
-              console.log("handler c 403")
-              this.authService.logout();
-              // this.eventBusService.emit(new EventData('logout', null));
-            }
-            // console.log("handler c not 403 throwing error")
-            // return throwError(() => error);//todo
-            console.log("handler c not 403 changing header")
-            request = request.clone({
-              headers: request.headers.set("Authorization", "Bearer " +
-                (this.isRefreshing ? localStorage.getItem('refresh_token') : localStorage.getItem("access_token")))
-            });
-            return next.handle(request);
-          })
-        );
-      }
-    }
-
-    return next.handle(request);
+  AddTokenheader(request: HttpRequest<any>, token: any) {
+    // console.log("added access token " + token)
+    return request.clone({headers: request.headers.set('Authorization', 'Bearer ' + token)});
   }
 
-
-  refreshToken2(request: HttpRequest<any>, next: HttpHandler) {
-    console.log("auth s start refreshing")
-    return this.httpClient.get<AuthResponseDto>("/api/auth/refresh")
-      .pipe(
-        map(res => {
-          console.log("auth s access: " + res.accessToken);
-          localStorage.setItem("access_token", res.accessToken);
-          console.log("auth s refresh: " + res.refreshToken);
-          localStorage.setItem("refresh_token", res.refreshToken);
-          localStorage.setItem("roles", JSON.stringify(res.roles));
-          // return next.handle(request);
-        }));
-  }
 }

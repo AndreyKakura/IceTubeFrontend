@@ -5,6 +5,10 @@ import {AuthResponseDto} from "../dto/auth-response-dto";
 import {Router} from "@angular/router";
 import {map, switchMap} from "rxjs/operators";
 
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -24,46 +28,53 @@ export class AuthService {
     return this.httpClient.post<AuthResponseDto>(this.apiUrl + '/token', inputData)
       .pipe(
       map(res => {
-        console.log("access" + res.accessToken);
         localStorage.setItem("access_token", res.accessToken);
-        console.log("refresh" + res.refreshToken);
-        localStorage.setItem("refresh_token", res.refreshToken);
+        // localStorage.setItem("refresh_token", res.refreshToken);
         localStorage.setItem("roles", JSON.stringify(res.roles));
       })
     )
 
   }
 
-
-  logout() {
-    //todo send logout request to backend
+  goToLogin() {
     localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
+    // localStorage.removeItem("refresh_token");
     localStorage.removeItem("roles")
     this.router.navigate(['login']);
+  }
+
+
+  logout() {
+    this.httpClient.get(this.apiUrl + "/logout");
+    //todo send logout request to backend
+    localStorage.removeItem("access_token");
+    // localStorage.removeItem("refresh_token");
+    localStorage.removeItem("roles")
   }
 
   getAccessToken() {
     return localStorage.getItem("access_token");
   }
 
-  getRefreshToken() {
-    return localStorage.getItem("refresh_token");
+
+  generateRefreshToken() {
+    console.log("auth s start refreshing")
+    return this.httpClient.get<AuthResponseDto>(this.apiUrl + "/refresh")
+    //   .pipe(
+    //     map(res => {
+    //       console.log("auth s access: " + res.accessToken);
+    //       localStorage.setItem("access_token", res.accessToken);
+    //       console.log("auth s refresh: " + res.refreshToken);
+    //       localStorage.setItem("refresh_token", res.refreshToken);
+    //       localStorage.setItem("roles", JSON.stringify(res.roles));
+    //     })
+    // );
   }
 
-
-  refreshToken() {
-    console.log("auth s start refreshing")
-    return this.httpClient.get<AuthResponseDto>(this.apiUrl + "/refresh"/*,
-      {headers: new HttpHeaders({'Authorization': 'Bearer ' + this.getRefreshToken()})}*/).pipe(
-        map(res => {
-          console.log("auth s access: " + res.accessToken);
-          localStorage.setItem("access_token", res.accessToken);
-          console.log("auth s refresh: " + res.refreshToken);
-          localStorage.setItem("refresh_token", res.refreshToken);
-          localStorage.setItem("roles", JSON.stringify(res.roles));
-        })
-    );
+  SaveTokens(tokendata: any) {
+    localStorage.setItem('access_token', tokendata.accessToken);
+    localStorage.setItem('roles', JSON.stringify(tokendata.roles));
+    // localStorage.setItem('refreshtoken', tokendata.refreshToken);
   }
 
 }

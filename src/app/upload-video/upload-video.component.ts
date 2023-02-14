@@ -40,7 +40,6 @@ export class UploadVideoComponent {
 
   constructor(private videoService: VideoService, private matSnackBar: MatSnackBar) {
     this.videoService.getVideo(50).subscribe(data => {
-      console.log(data.streamUrl);
       this.streamUrl = data.streamUrl;
     })
     this.uploadVideoForm = new FormGroup( {
