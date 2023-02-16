@@ -1,20 +1,26 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {FormBuilder} from "@angular/forms";
 import {AuthResponseDto} from "../dto/auth-response-dto";
 import {Router} from "@angular/router";
-import {map, switchMap} from "rxjs/operators";
-
+import {BehaviorSubject, Observable, of} from "rxjs";
+import {map} from "rxjs/operators";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  private rolesSubject = new BehaviorSubject<string[]>([]);
+  public roleChanges = this.rolesSubject.asObservable();
+
   constructor(private httpClient: HttpClient, private router: Router) {
+    // When the service is constructed, update the roles subject with the latest value from localStorage.
+    const roles = JSON.parse(localStorage.getItem('roles') || '[]');
+    this.rolesSubject.next(roles);
   }
 
   apiUrl = "/api/auth"
@@ -23,33 +29,45 @@ export class AuthService {
     return this.httpClient.post(this.apiUrl + '/register', inputData);
   }
 
-
   loginUser(inputData: any) {
     return this.httpClient.post<AuthResponseDto>(this.apiUrl + '/token', inputData)
       .pipe(
-      map(res => {
-        localStorage.setItem("access_token", res.accessToken);
-        // localStorage.setItem("refresh_token", res.refreshToken);
-        localStorage.setItem("roles", JSON.stringify(res.roles));
-      })
-    )
-
+        map(res => {
+          localStorage.setItem("access_token", res.accessToken);
+          localStorage.setItem("roles", JSON.stringify(res.roles));
+          // When the roles in localStorage are updated, emit a new value from the rolesSubject.
+          this.rolesSubject.next(res.roles);
+        })
+      );
   }
 
   goToLogin() {
     localStorage.removeItem("access_token");
-    // localStorage.removeItem("refresh_token");
     localStorage.removeItem("roles")
     this.router.navigate(['login']);
   }
 
 
+  // logout() {
+  //   this.httpClient.get(this.apiUrl + "/logout");
+  //   localStorage.removeItem("access_token");
+  //   localStorage.removeItem("roles")
+  // }
+
   logout() {
-    this.httpClient.get(this.apiUrl + "/logout");
-    //todo send logout request to backend
-    localStorage.removeItem("access_token");
-    // localStorage.removeItem("refresh_token");
-    localStorage.removeItem("roles")
+    this.httpClient.get(this.apiUrl + '/logout').subscribe({
+      next: () => {
+        console.log('Access token revoked');
+      },
+      error: (err) => {
+        console.error('Error revoking access token:', err);
+      },
+      complete: () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('roles');
+        this.rolesSubject.next([]);
+      }
+    });
   }
 
   getAccessToken() {
@@ -60,21 +78,30 @@ export class AuthService {
   generateRefreshToken() {
     console.log("auth s start refreshing")
     return this.httpClient.get<AuthResponseDto>(this.apiUrl + "/refresh")
-    //   .pipe(
-    //     map(res => {
-    //       console.log("auth s access: " + res.accessToken);
-    //       localStorage.setItem("access_token", res.accessToken);
-    //       console.log("auth s refresh: " + res.refreshToken);
-    //       localStorage.setItem("refresh_token", res.refreshToken);
-    //       localStorage.setItem("roles", JSON.stringify(res.roles));
-    //     })
-    // );
   }
 
-  SaveTokens(tokendata: any) {
+  SaveTokens(tokendata
+               :
+               any
+  ) {
     localStorage.setItem('access_token', tokendata.accessToken);
     localStorage.setItem('roles', JSON.stringify(tokendata.roles));
-    // localStorage.setItem('refreshtoken', tokendata.refreshToken);
+  }
+
+  isAuthenticated() {
+    return localStorage.getItem('access_token') != null;
+  }
+
+  getRoles() {
+    return JSON.parse(localStorage.getItem('roles') || '[]');
+  }
+
+
+  roles()
+    :
+    Observable<{ roles: string[] }> {
+    const roles = JSON.parse(localStorage.getItem('roles') || '[]');
+    return of({roles});
   }
 
 }

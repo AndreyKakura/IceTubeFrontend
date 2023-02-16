@@ -8,6 +8,9 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>account_circle</mat-icon>
     </button>
+<!--    <a routerLink="/user" mat-raised-button>User</a>-->
+<!--    <button mat-raised-button *ifRoles="['ROLE_USER']">User</button>-->
+    <a routerLink="/user" mat-raised-button *ifRoles="['ROLE_USER']">User</a>
     <button mat-raised-button (click)="testUser()">Test User</button>
     <button mat-raised-button color="accent" (click)="proceedLogout()">Logout</button>
   </mat-toolbar-row>

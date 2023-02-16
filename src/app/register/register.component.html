@@ -7,7 +7,7 @@
       <div>
         <mat-form-field class="full-width" subscriptSizing="dynamic">
           <mat-label>Логин</mat-label>
-          <input matInput formControlName="username">
+          <input matInput formControlName="username" name="username">
           <mat-error *ngIf="registrationForm.get('username')?.hasError('required')">Заполните это поле</mat-error>
           <mat-error *ngIf="registrationForm.get('username')?.hasError('minlength')">Минимум 4 символа</mat-error>
           <mat-error *ngIf="registrationForm.get('username')?.hasError('maxlength')">Максимум 30 символов</mat-error>
@@ -19,7 +19,7 @@
       <div>
         <mat-form-field class="full-width" subscriptSizing="dynamic">
           <mat-label>Имя</mat-label>
-          <input matInput formControlName="name">
+          <input matInput formControlName="name" autocomplete="off">
           <mat-error *ngIf="registrationForm.get('name')?.hasError('required')">Заполните это поле</mat-error>
           <mat-error *ngIf="registrationForm.get('name')?.hasError('minlength')">Минимум 4 символа</mat-error>
           <mat-error *ngIf="registrationForm.get('name')?.hasError('maxlength')">Максимум 30 символов</mat-error>
@@ -30,7 +30,7 @@
       <div>
         <mat-form-field class="full-width" subscriptSizing="dynamic">
           <mat-label>Фамилия</mat-label>
-          <input matInput formControlName="surname">
+          <input matInput formControlName="surname" autocomplete="off">
           <mat-error *ngIf="registrationForm.get('surname')?.hasError('required')">Заполните это поле</mat-error>
           <mat-error *ngIf="registrationForm.get('surname')?.hasError('minlength')">Минимум 4 символа</mat-error>
           <mat-error *ngIf="registrationForm.get('surname')?.hasError('maxlength')">Максимум 30 символов</mat-error>
@@ -41,7 +41,7 @@
       <div>
         <mat-form-field class="full-width" subscriptSizing="dynamic">
           <mat-label>Пароль</mat-label>
-          <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password">
+          <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password" name="password">
           <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
                   [attr.aria-pressed]="hidePassword">
             <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>

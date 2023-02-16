@@ -27,6 +27,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatRadioModule} from "@angular/material/radio";
 import { HomeComponent } from './home/home.component';
 import {AuthInterceptor} from "./auth.interceptor";
+import { UserComponent } from './user/user.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { IfRolesDirective } from './if-roles.directive';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import {AuthInterceptor} from "./auth.interceptor";
     VideoPlayerComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent,
+    NotFoundComponent,
+    IfRolesDirective,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +66,7 @@ import {AuthInterceptor} from "./auth.interceptor";
     MatSnackBarModule,
     MatCardModule,
     MatRadioModule,
+    CommonModule,
   ],
   providers: [
     {
