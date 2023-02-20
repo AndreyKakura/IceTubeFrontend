@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-import {FormControl, FormGroup} from "@angular/forms";
+import {Component} from '@angular/core';
+import {NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry} from 'ngx-file-drop';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {VideoService} from "../service/video.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-upload-video',
@@ -13,13 +14,6 @@ import {VideoService} from "../service/video.service";
 })
 export class UploadVideoComponent {
 
-  public files: NgxFileDropEntry[] = [];
-
-  fileUploaded: boolean = false;
-
-  fileEntry: FileSystemFileEntry | undefined;
-
-  /*------------------------------------------------*/
   uploadVideoForm: FormGroup;
   title: FormControl = new FormControl('');
   description: FormControl = new FormControl('');
@@ -27,28 +21,20 @@ export class UploadVideoComponent {
   //
   previewFile!: File;
   videoFile!: File;
-
-
   /*------------------------------------------------*/
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   tags: string[] = [];
-  /*------------------------------------------------*/
-  // selectedImageName = '';
-  streamUrl!: string;
 
-
-  constructor(private videoService: VideoService, private matSnackBar: MatSnackBar) {
-    this.videoService.getVideo(50).subscribe(data => {
-      this.streamUrl = data.streamUrl;
-    })
-    this.uploadVideoForm = new FormGroup( {
+  constructor(private videoService: VideoService, private matSnackBar: MatSnackBar, private router: Router, private builder: FormBuilder) {
+    this.uploadVideoForm = new FormGroup({
       title: this.title,
       description: this.description,
       videoStatus: this.videoStatus,
     })
 
   }
+
 
   addTag(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -87,71 +73,9 @@ export class UploadVideoComponent {
     }
   }
 
-
-  /*------------------------------------------------*/
-
-  // public dropped(files: NgxFileDropEntry[]) {
-  //   this.files = files;
-  //   for (const droppedFile of files) {
-  //
-  //     // Is it a file?
-  //     if (droppedFile.fileEntry.isFile) {
-  //       this.fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-  //       this.fileEntry.file((file: File) => {
-  //
-  //         // Here you can access the real file
-  //         console.log(droppedFile.relativePath, file);
-  //
-  //         this.fileUploaded = true
-  //         /**
-  //          // You could upload it like this:
-  //          const formData = new FormData()
-  //          formData.append('logo', file, relativePath)
-  //
-  //          // Headers
-  //          const headers = new HttpHeaders({
-  //           'security-token': 'mytoken'
-  //         })
-  //
-  //          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
-  //          .subscribe(data => {
-  //           // Sanitized logo returned from backend
-  //         })
-  //          **/
-  //
-  //       });
-  //     } else {
-  //       // It was a directory (empty directories are added, otherwise only files)
-  //       const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-  //       console.log(droppedFile.relativePath, fileEntry);
-  //     }
-  //   }
-  // }
-
-  // public fileOver(event: any){
-  //   console.log(event);
-  // }
-  //
-  // public fileLeave(event: any){
-  //   console.log(event);
-  // }
-
-  // uploadVideo() {
-  //   console.log(this.fileEntry);
-  //
-  //   if(this.fileEntry !== undefined) {
-  //     this.fileEntry?.file(file => {
-  //       this.videoService.uploadVideo(file).subscribe(data => {
-  //         console.log("Video uploaded successfully");
-  //       })
-  //     })
-  //   }
-  // }
-
   onImageSelected(event: Event) {
     //@ts-ignore
     this.previewFile = event.target.files[0];
-    // this.selectedFileName = this.selectedFile.name;
   }
 
   onVideoSelected(event: Event) {
@@ -160,15 +84,21 @@ export class UploadVideoComponent {
   }
 
   uploadVideo() {
-    const newVideoFormData = new FormData();
-    newVideoFormData.append('title', this.uploadVideoForm.get('title')?.value);
-    newVideoFormData.append('description', this.uploadVideoForm.get('description')?.value);
-    newVideoFormData.append('tags', this.tags.toString());
-    newVideoFormData.append('videoStatus', this.uploadVideoForm.get('videoStatus')?.value);
-    newVideoFormData.append('videoFile', this.videoFile);
-    newVideoFormData.append('previewFile', this.previewFile);
-    this.videoService.uploadVideo(newVideoFormData).subscribe(data => {
-      this.matSnackBar.open("Видео успешно загружено на сервер", "Ок", {duration: 3000 });
-    })
+    if (this.uploadVideoForm.valid) {
+      const newVideoFormData = new FormData();
+      newVideoFormData.append('title', this.uploadVideoForm.get('title')?.value);
+      newVideoFormData.append('description', this.uploadVideoForm.get('description')?.value);
+      newVideoFormData.append('tags', this.tags.toString());
+      newVideoFormData.append('videoStatus', this.uploadVideoForm.get('videoStatus')?.value);
+      newVideoFormData.append('videoFile', this.videoFile);
+      newVideoFormData.append('previewFile', this.previewFile);
+      this.videoService.uploadVideo(newVideoFormData).subscribe(data => {
+        this.matSnackBar.open("Видео успешно загружено на сервер", "Ок", {duration: 3000});
+        this.router.navigate(['home']);
+      })
+    } else {
+      this.matSnackBar.open("Пожалуйста, заполните все необходимы поля и прикрепите файлы", "Ладно", {duration: 3000});
+    }
   }
+
 }

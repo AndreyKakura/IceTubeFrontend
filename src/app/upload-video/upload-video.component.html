@@ -2,25 +2,25 @@
   <div>
     <form [formGroup]="uploadVideoForm">
       <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Название</mat-label>
-        <input matInput [formControl]="title" required>
-      </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Название</mat-label>
+          <input matInput [formControl]="title" required>
+        </mat-form-field>
       </div>
       <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Описание</mat-label>
-        <textarea matInput [formControl]="description" required></textarea>
-      </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Описание</mat-label>
+          <textarea matInput [formControl]="description" required></textarea>
+        </mat-form-field>
       </div>
       <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Тип видео</mat-label>
-        <mat-select required [formControl]="videoStatus">
-          <mat-option value="PUBLIC">Общедоступное</mat-option>
-          <mat-option value="PRIVATE">Частное</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Тип видео</mat-label>
+          <mat-select required [formControl]="videoStatus">
+            <mat-option value="PUBLIC">Общедоступное</mat-option>
+            <mat-option value="PRIVATE">Частное</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div>
         <mat-form-field class="" appearance="fill">
@@ -47,28 +47,19 @@
 
       <div>
         <label for="previewFile">Добавить превью
-        <div>
-          <input type="file" accept="image/png, image/jpeg" id="previewFile" aria-describedby="previewFile"
-          (change)="onImageSelected($event)"
-          >
-        </div>
-          <br>
-          <hr>
+          <div>
+            <input class="custom-file-input" type="file" accept="image/png, image/jpeg" id="previewFile" aria-describedby="previewFile"
+                   (change)="onImageSelected($event)" required>
+          </div>
         </label>
       </div>
 
       <div>
         <label for="previewFile">Добавить видео
           <div>
-            <input type="file"  accept="video/mp4" id="videoFile" aria-describedby="videoFile"
-                   (change)="onVideoSelected($event)"
-            >
+            <input class="custom-file-input" type="file" accept="video/mp4" id="videoFile" aria-describedby="videoFile"
+                   (change)="onVideoSelected($event)" required>
           </div>
-          <br>
-          <!--          <div *ngIf="selectedVideoName">-->
-          <!--            <p>Выбранное изображение: {{selectedVideoName}}</p>-->
-          <!--          </div>-->
-          <hr>
         </label>
       </div>
       <div>
@@ -76,28 +67,4 @@
       </div>
     </form>
   </div>
-<!--  <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"-->
-<!--                 (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">-->
-<!--    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">-->
-<!--      Перетащите сюда видеофайл или-->
-<!--      <button type="button" (click)="openFileSelector()">Выберите файл</button>-->
-<!--    </ng-template>-->
-<!--  </ngx-file-drop>-->
-<!--  <div class="upload-table">-->
-<!--    <table class="table">-->
-<!--      <thead>-->
-<!--      <tr>-->
-<!--        <th>Name</th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-<!--      <tbody class="upload-name-style">-->
-<!--      <tr *ngFor="let item of files; let i=index">-->
-<!--        <td><strong>{{ item.relativePath }}</strong></td>-->
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
-<!--  </div>-->
-
-<!--  <button mat-button (click)="uploadVideo()" *ngIf="fileUploaded">Загрузить</button>-->
-  <app-video-player [streamUrl]="streamUrl"></app-video-player>
 </div>

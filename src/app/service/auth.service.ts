@@ -66,6 +66,7 @@ export class AuthService {
         localStorage.removeItem('access_token');
         localStorage.removeItem('roles');
         this.rolesSubject.next([]);
+        this.router.navigate(['login']);
       }
     });
   }

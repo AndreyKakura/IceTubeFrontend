@@ -31,6 +31,9 @@ import { UserComponent } from './user/user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { IfRolesDirective } from './if-roles.directive';
 import {CommonModule} from "@angular/common";
+import {LayoutModule} from "@angular/cdk/layout";
+import { VideoComponent } from './video/video.component';
+import {PlyrModule} from "ngx-plyr";
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import {CommonModule} from "@angular/common";
     UserComponent,
     NotFoundComponent,
     IfRolesDirective,
+    VideoComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +71,8 @@ import {CommonModule} from "@angular/common";
     MatCardModule,
     MatRadioModule,
     CommonModule,
+    LayoutModule,
+    PlyrModule,
   ],
   providers: [
     {

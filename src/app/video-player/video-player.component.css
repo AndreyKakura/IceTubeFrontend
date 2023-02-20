@@ -1,3 +1,4 @@
-.p-b-50 {
-  padding-bottom: 50px;
+.rounded {
+  overflow: hidden;
+  border-radius: 5px;
 }
