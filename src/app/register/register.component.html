@@ -21,7 +21,7 @@
           <mat-label>Имя</mat-label>
           <input matInput formControlName="name" autocomplete="off">
           <mat-error *ngIf="registrationForm.get('name')?.hasError('required')">Заполните это поле</mat-error>
-          <mat-error *ngIf="registrationForm.get('name')?.hasError('minlength')">Минимум 4 символа</mat-error>
+          <mat-error *ngIf="registrationForm.get('name')?.hasError('minlength')">Минимум 2 символа</mat-error>
           <mat-error *ngIf="registrationForm.get('name')?.hasError('maxlength')">Максимум 30 символов</mat-error>
           <mat-error *ngIf="registrationForm.get('name')?.hasError('pattern')">Только латинские и кириллические буквы
           </mat-error>
@@ -32,7 +32,7 @@
           <mat-label>Фамилия</mat-label>
           <input matInput formControlName="surname" autocomplete="off">
           <mat-error *ngIf="registrationForm.get('surname')?.hasError('required')">Заполните это поле</mat-error>
-          <mat-error *ngIf="registrationForm.get('surname')?.hasError('minlength')">Минимум 4 символа</mat-error>
+          <mat-error *ngIf="registrationForm.get('surname')?.hasError('minlength')">Минимум 2 символа</mat-error>
           <mat-error *ngIf="registrationForm.get('surname')?.hasError('maxlength')">Максимум 30 символов</mat-error>
           <mat-error *ngIf="registrationForm.get('surname')?.hasError('pattern')">Только латинские и кириллические буквы
           </mat-error>

@@ -23,7 +23,7 @@ export class UploadVideoComponent {
   videoFile!: File;
   /*------------------------------------------------*/
   addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  readonly separatorKeysCodes = [ENTER] as const;
   tags: string[] = [];
 
   constructor(private videoService: VideoService, private matSnackBar: MatSnackBar, private router: Router, private builder: FormBuilder) {
