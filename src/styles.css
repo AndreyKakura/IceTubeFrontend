@@ -86,9 +86,6 @@ body {
   position: relative;
 }
 
-/*.plyr__controls .plyr__controls__item {*/
-/*  display: none;*/
-/*}*/
-/*.plyr__controls .plyr__time {*/
-/*  display: block;*/
-/*}*/
+.pointer {
+  cursor: pointer;
+}

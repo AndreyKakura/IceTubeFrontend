@@ -8,6 +8,10 @@ import {UserComponent} from "./user/user.component";
 import {RoleGuard} from "./guard/role.guard";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {VideoComponent} from "./video/video.component";
+import {HistoryComponent} from "./history/history.component";
+import {LikedVideosComponent} from "./liked-videos/liked-videos.component";
+import {SubscriptionsComponent} from "./subscriptions/subscriptions.component";
+import {UserVideosComponent} from "./user-videos/user-videos.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -15,7 +19,11 @@ const routes: Routes = [
   {path: 'upload-video', component: UploadVideoComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'video/history', component: HistoryComponent},
+  {path: 'video/publishedby/:userId', component: UserVideosComponent},
   {path: 'video/:videoId', component: VideoComponent},
+  {path: 'user/likedvideos', component: LikedVideosComponent},
+  {path: 'user/subscriptions', component: SubscriptionsComponent},
   {
     path: 'user',
     component: UserComponent,

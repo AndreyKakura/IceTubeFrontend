@@ -1,0 +1,9 @@
+.list-video {
+  display: flex;
+  flex-wrap: wrap;;
+  justify-content: center;
+  gap: 10px;
+}
+.center {
+  text-align: center;
+}

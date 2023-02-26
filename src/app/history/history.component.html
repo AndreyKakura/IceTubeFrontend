@@ -1,1 +1,6 @@
-<p>history works!</p>
+<h2 class="center">Недавно просмотренные видео</h2>
+<div class="list-video">
+  <div *ngFor="let video of videos" >
+    <app-video-card [video]="video" ></app-video-card>
+  </div>
+</div>

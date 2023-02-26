@@ -1,0 +1,8 @@
+<h2 class="center">Видео, опубликованные пользователем <span class="name">{{user.name}} {{user.surname}}</span>, печально известным
+  как <span class="name">"{{user.username}}"</span></h2>
+
+<div class="list-video">
+  <div *ngFor="let video of videos">
+    <app-video-card [video]="video"></app-video-card>
+  </div>
+</div>

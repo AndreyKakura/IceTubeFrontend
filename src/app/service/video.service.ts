@@ -38,4 +38,12 @@ export class VideoService {
     return this.httpClient.post<VideoDto>("api/video/" + videoId + "/dislike", null);
   }
 
+  getHistory(): Observable<Array<VideoDto>> {
+    return this.httpClient.get<Array<VideoDto>>("api/video/history");
+  }
+
+  getPublishedByUserVideos(userId: number): Observable<Array<VideoDto>> {
+    return this.httpClient.get<Array<VideoDto>>("api/video/publishedby/" + userId);
+  }
+
 }

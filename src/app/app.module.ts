@@ -42,6 +42,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import { VideoCardComponent } from './video-card/video-card.component';
 import { CommentsComponent } from './comments/comments.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { UserVideosComponent } from './user-videos/user-videos.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { CommentsComponent } from './comments/comments.component';
     SidebarComponent,
     VideoCardComponent,
     CommentsComponent,
+    UserCardComponent,
+    UserVideosComponent,
   ],
   imports: [
     BrowserModule,
