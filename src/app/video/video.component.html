@@ -1,18 +1,36 @@
-
 <mat-card>
-  <mat-card-header>
-      <app-video-player *ngIf="videoAvailable" [streamUrl]="streamUrl" [previewUrl]="previewUrl"></app-video-player>
+  <mat-card-header >
+    <app-video-player class="video-container" *ngIf="videoAvailable" [streamUrl]="streamUrl" [previewUrl]="previewUrl"></app-video-player>
   </mat-card-header>
   <mat-card-content class="m-t-10">
     <p class="title">{{title}}</p>
     <p class="description">{{description}}</p>
+    <div class="grade-section">
+      <button mat-button (click)="likeVideo()" class="grade-button like-button">
+        <mat-icon class="grade-icon">thumb_up</mat-icon>
+        <span>{{likes}}</span>
+      </button>
+      <button mat-button (click)="dislikeVideo()" class="grade-button dislike-button">
+        <mat-icon class="grade-icon">thumb_down</mat-icon>
+        <span>{{dislikes}}</span>
+      </button>
+    </div>
+    <p class="description">Просмотров: {{viewCount}}</p>
+    <button *ngIf="!isSubscribedToAuthor" mat-raised-button color="warn"
+            (click)="subscribe()">ПОДПИСАТЬСЯ
+    </button>
+    <button *ngIf="isSubscribedToAuthor" mat-raised-button color="primary"
+            (click)="unsubscribe()">ОТПИСАТЬСЯ
+    </button>
+    <hr>
     <mat-chip-listbox>
       <mat-chip *ngFor="let tag of tags" (click)="onTagClick(tag)">
         {{tag}}
       </mat-chip>
     </mat-chip-listbox>
-    <div class="comments">Комментарии/Рекомендации</div>
-
+    <div class="comments">
+      <app-comments *ngIf="videoAvailable" [videoId]="videoId"></app-comments>
+    </div>
   </mat-card-content>
 
 </mat-card>

@@ -8,4 +8,16 @@ export interface VideoDto {
   streamUrl: string;
   previewUrl: string;
 
+  viewCount: number;
+
+  likes: number;
+
+  dislikes: number;
+
+  authorName: string;
+
+  authorId: number;
+
+  isSubscribedToAuthor: boolean;
+
 }

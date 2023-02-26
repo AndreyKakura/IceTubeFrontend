@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../service/auth.service";
@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  @Output() toggleSidenav = new EventEmitter<void>();
 
   constructor(private authService: AuthService, private httpClient: HttpClient, private matSnackBar: MatSnackBar,
               private router: Router) {
@@ -25,5 +26,9 @@ export class HeaderComponent {
 
   proceedLogout() {
     this.authService.logout();
+  }
+
+  toggleSidebar() {
+    this.toggleSidenav.emit();
   }
 }

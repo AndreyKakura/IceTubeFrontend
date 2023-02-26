@@ -1,0 +1,28 @@
+mat-list-item {
+  cursor: pointer !important;
+  border: 2px solid lightgrey;
+  margin: 2px 0px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-list-item mat-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+mat-list-item span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+mat-list-item:hover {
+  background-color: lightgrey;
+}
+
+.active-link {
+  background-color: lightgrey;
+}

@@ -34,6 +34,14 @@ import {CommonModule} from "@angular/common";
 import {LayoutModule} from "@angular/cdk/layout";
 import { VideoComponent } from './video/video.component';
 import {PlyrModule} from "ngx-plyr";
+import { HistoryComponent } from './history/history.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { LikedVideosComponent } from './liked-videos/liked-videos.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import { VideoCardComponent } from './video-card/video-card.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +56,12 @@ import {PlyrModule} from "ngx-plyr";
     NotFoundComponent,
     IfRolesDirective,
     VideoComponent,
+    HistoryComponent,
+    SubscriptionsComponent,
+    LikedVideosComponent,
+    SidebarComponent,
+    VideoCardComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +87,8 @@ import {PlyrModule} from "ngx-plyr";
     CommonModule,
     LayoutModule,
     PlyrModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [
     {

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {VideoService} from "../service/video.service";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-video',
@@ -20,10 +21,22 @@ export class VideoComponent {
 
   tags!: Array<string>;
 
+  likes!: number;
+
+  dislikes!: number;
+
+  viewCount!: number;
+
+  authorName!: string;
+
+  authorId!: number;
+
+  isSubscribedToAuthor?: boolean;
+
 
   videoAvailable: boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService) {
+  constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService, private userService: UserService) {
     this.videoId = this.activatedRoute.snapshot.params['videoId'];
     this.videoService.getVideo(this.videoId).subscribe(data => {
       console.log(data.streamUrl);
@@ -32,11 +45,44 @@ export class VideoComponent {
       this.title = data.title;
       this.description = data.description;
       this.tags = data.tags;
+      this.likes = data.likes;
+      this.dislikes = data.dislikes;
+      this.viewCount = data.viewCount;
+      this.authorName = data.authorName;
+      this.authorId = data.authorId;
+      this.isSubscribedToAuthor = data.isSubscribedToAuthor;
+      // setTimeout(() => this.videoAvailable = true, 2000 )
       this.videoAvailable = true;
     })
   }
 
   onTagClick(tag: string) {
     //todo
+  }
+
+  likeVideo() {
+    this.videoService.likeVideo(this.videoId).subscribe(data => {
+      this.likes = data.likes;
+      this.dislikes = data.dislikes;
+    })
+  }
+
+  dislikeVideo() {
+    this.videoService.dislikeVideo(this.videoId).subscribe(data => {
+      this.likes = data.likes;
+      this.dislikes = data.dislikes;
+    })
+  }
+
+  subscribe() {
+    this.userService.subscribe(this.authorId).subscribe(isSubscribed => {
+      this.isSubscribedToAuthor = isSubscribed;
+    })
+  }
+
+  unsubscribe() {
+    this.userService.unsubscribe(this.authorId).subscribe(isSubscribed => {
+      this.isSubscribedToAuthor = isSubscribed;
+    })
   }
 }

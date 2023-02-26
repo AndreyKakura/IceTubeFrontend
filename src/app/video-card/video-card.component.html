@@ -1,0 +1,9 @@
+<mat-card class="video-card" routerLink="/video/{{video.id}}">
+  <img mat-card-image [src]="video.previewUrl" alt="Preview Image" class="preview">
+  <mat-card-header>
+<!--    <div mat-card-avatar class="example-header-image"></div>-->
+    <mat-card-title class="title">{{video.title}}</mat-card-title>
+    <mat-card-subtitle>Author name</mat-card-subtitle>
+    <mat-card-subtitle>{{video.viewCount}}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

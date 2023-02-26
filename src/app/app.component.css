@@ -7,3 +7,32 @@
     padding: 5px 0 0;
   }
 }
+
+.sidebar {
+  min-height: 100vh;
+  width: 20%;
+  padding: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 64px;
+  position: fixed;
+}
+@media (max-width: 500px) {
+  .sidebar {
+    width: 70%;
+    margin-top: 56px;
+  }
+}
+
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.main-body {
+  min-height: calc(100vh - 64px);
+  padding-top: 70px;
+}

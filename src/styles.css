@@ -3,7 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+}
+
 body {
   --color-button: #0D606F;
   margin: 0;
@@ -15,3 +18,77 @@ body {
 .link2 {
   color: red;
 }
+
+/*@media (max-width: 500px) {*/
+
+/*}*/
+/*.plyr__controls {*/
+/*  display: flex;*/
+/*  !*flex-direction: column;*!*/
+/*  flex-wrap: wrap;*/
+/*}*/
+
+/*.plyr__progress-container {*/
+/*  !*order: 2;*!*/
+/*}*/
+
+/*.plyr__progress-container {*/
+/*  flex-basis: 100%;*/
+/*}*/
+
+/*.plyr__control:not(.plyr__progress) {*/
+/*  !*order: -1;*!*/
+/*  !*margin-right: 10px;*!*/
+/*  !*margin-bottom: 10px;*!*/
+/*}*/
+
+
+/*.plyr__controls {*/
+/*  flex-wrap: wrap;*/
+/*  justify-content: flex-start;*/
+/*}*/
+
+/*.plyr__controls .plyr__time {*/
+/*  order: 1;*/
+/*  flex-grow: 1;*/
+/*  flex-basis: 100%;*/
+/*  text-align: left;*/
+/*}*/
+/*.plyr__controls .plyr__progress {*/
+/*  order: 1;*/
+/*  flex-grow: 1;*/
+/*  flex-basis: 100%;*/
+/*  text-align: left;*/
+/*}*/
+
+
+
+/*.plyr__time {*/
+/*  order: 1;*/
+/*}*/
+
+/*.plyr__control {*/
+/*  order: 2;*/
+/*}*/
+
+
+
+@media (max-width: 600px) {
+
+  .plyr__controls .plyr__volume {
+    display: none;
+  }
+
+
+}
+
+.body {
+  position: relative;
+}
+
+/*.plyr__controls .plyr__controls__item {*/
+/*  display: none;*/
+/*}*/
+/*.plyr__controls .plyr__time {*/
+/*  display: block;*/
+/*}*/

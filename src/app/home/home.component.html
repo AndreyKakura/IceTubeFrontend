@@ -1,2 +1,5 @@
-<p>home works!</p>
-<!--<div>{{authService.getAccessToken()}}</div>-->
+<div class="list-video">
+  <div *ngFor="let video of videos" >
+    <app-video-card [video]="video" ></app-video-card>
+  </div>
+</div>

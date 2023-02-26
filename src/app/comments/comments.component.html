@@ -1,0 +1,19 @@
+<form [formGroup]="commentForm">
+
+  <div>
+    <mat-form-field  class="new-comment" subscriptSizing="dynamic">
+      <mat-label>Поделитесь своим авторитетным мнением</mat-label>
+      <textarea matInput formControlName="text" cdkTextareaAutosize></textarea>
+      <mat-error *ngIf="commentForm.get('text')?.hasError('required')">
+        К сожалению, это поле должно быть заполнено
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button type="submit" class="comment-button" mat-raised-button (click)="postComment()">ПРОКОММЕНТИРОВАТЬ</button>
+</form>
+<div *ngFor="let comment of comments">
+  <mat-card class="comment-card">
+      <p><span class="username">{{comment.username}}</span> - {{comment.createdAt | date:'medium'}}</p>
+      <p>{{comment.text}}</p>
+  </mat-card>
+</div>

@@ -1,9 +1,11 @@
 .comments {
   padding-top: 10px;
 }
+
 .title {
   font-size: 24px;
 }
+
 .description {
   font-size: 20px;
   color: dimgrey;
@@ -12,3 +14,37 @@
 .m-t-10 {
   margin-top: 10px;
 }
+
+.grade-section {
+  display: flex;
+}
+
+.grade-button {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  border: 1px solid lightgrey;
+}
+
+.grade-icon {
+  font-size: 24px;
+  padding-right: 7px;
+  padding-bottom: 5px;
+}
+
+.like-button {
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+}
+.dislike-button {
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+@media (min-width: 1280px) {
+  .video-container {
+    width: 960px;
+    height: 540px;
+  }
+}
+

@@ -44,11 +44,11 @@
 <!--  <source src="{{streamUrl}}" type="video/mp4">-->
 <!--</video>-->
 
-<plyr style="display: block; width: 1080px;" plyrTitle="Video 1" [plyrPlaysInline]="true" class="rounded"
+<plyr class="video-player" plyrTitle="Video 1" [plyrPlaysInline]="true" class="rounded"
       [plyrSources]="[{src: streamUrl, type: 'video/mp4'}]"
       [plyrTracks]="[{kind: 'captions', label: 'Russian', src: '../../assets/002.vtt', default: true}]"
-      [plyrOptions]="{controls: ['play-large',  'pause-large', 'play', 'current-time', 'progress', 'duration',
-       'mute', 'volume', 'captions', 'pip', 'settings', 'fullscreen']}"
+      [plyrOptions]="{controls: ['play-large',  'pause-large', 'play', 'current-time', 'progress', 'duration', 'mute', 'volume', 'captions', 'pip', 'airplay', 'settings', 'fullscreen']}"
+
       [plyrPoster]="previewUrl"
       (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
 

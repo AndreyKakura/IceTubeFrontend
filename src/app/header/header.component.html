@@ -1,5 +1,11 @@
 <mat-toolbar>
   <mat-toolbar-row>
+<!--    <button mat-icon-button (click)="toggleSidebar()">-->
+<!--      <mat-icon>menu</mat-icon>-->
+<!--    </button>-->
+    <div class="menu-button" (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </div>
     <span>IceTube</span>
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
