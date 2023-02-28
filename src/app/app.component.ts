@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'icetube';
+
+  onSidenavOpen() {
+    // document.body.classList.add('noscroll');
+    document.documentElement.classList.add('sidebar-opened');
+  }
+
+
+  onSidenavClose() {
+    // document.body.classList.remove('noscroll');
+    document.documentElement.classList.remove('sidebar-opened');
+
+  }
 }

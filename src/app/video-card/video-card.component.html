@@ -1,9 +1,9 @@
-<mat-card class="video-card" routerLink="/video/{{video.id}}">
-  <img mat-card-image [src]="video.previewUrl" alt="Preview Image" class="preview">
+<mat-card class="video-card">
+  <img mat-card-image [src]="video.previewUrl" alt="Preview Image" class="preview pointer"  routerLink="/video/{{video.id}}">
   <mat-card-header>
 <!--    <div mat-card-avatar class="example-header-image"></div>-->
-    <mat-card-title class="title">{{video.title}}</mat-card-title>
-    <mat-card-subtitle>Author name</mat-card-subtitle>
-    <mat-card-subtitle>{{video.viewCount}}</mat-card-subtitle>
+    <mat-card-title class="title pointer"  routerLink="/video/{{video.id}}">{{video.title}}</mat-card-title>
+    <mat-card-subtitle class="link pointer" routerLink="/video/publishedby/{{video.authorId}}">Автор: {{video.authorName}}</mat-card-subtitle>
+    <mat-card-subtitle>Просмотров: {{video.viewCount}}</mat-card-subtitle>
   </mat-card-header>
 </mat-card>

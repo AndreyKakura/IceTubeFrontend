@@ -26,3 +26,12 @@ mat-list-item:hover {
 .active-link {
   background-color: lightgrey;
 }
+.sidenav-icon {
+  width: 24px;
+  margin-right: 10px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+}

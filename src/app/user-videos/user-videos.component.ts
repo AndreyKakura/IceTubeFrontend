@@ -18,16 +18,34 @@ export class UserVideosComponent {
 
   videos: Array<VideoDto> = [];
 
-  constructor(private videoService: VideoService, private activatedRoute: ActivatedRoute, userService: UserService) {
-    this.userId = this.activatedRoute.snapshot.params['userId'];
-    userService.getById(this.userId).subscribe(user => {
-      this.user = user;
-    });
+  isSubscribed?: boolean;
+
+  constructor(private videoService: VideoService, private activatedRoute: ActivatedRoute, private userService: UserService) {
+
   }
 
   ngOnInit(): void {
+    this.userId = this.activatedRoute.snapshot.params['userId'];
+    this.userService.getById(this.userId).subscribe(user => {
+      this.user = user;
+      this.isSubscribed = user.isSubscribed;
+    });
     this.videoService.getPublishedByUserVideos(this.userId).subscribe(response => {
       this.videos = response;
     })
   }
+
+  subscribe() {
+    this.userService.subscribe(this.user.id).subscribe(isSubscribed => {
+      this.isSubscribed = isSubscribed;
+    })
+
+  }
+
+  unsubscribe() {
+    this.userService.unsubscribe(this.user.id).subscribe(isSubscribed => {
+      this.isSubscribed = isSubscribed;
+    })
+  }
+
 }

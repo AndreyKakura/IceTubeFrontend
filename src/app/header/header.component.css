@@ -1,9 +1,11 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
 .menu-button {
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -11,6 +13,7 @@
   /*border: 1px solid #ccc;*/
   /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);*/
   cursor: pointer;
+  align-items: center;
   /*transition: background-color 0.3s ease-out;*/
 }
 
@@ -23,4 +26,35 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.icetube {
+  border-radius: 7px;
+  font-size: 22px;
+  background-color: azure;
+  padding: 2px 12px;
+}
+
+.ice {
+  color: dimgrey;
+}
+
+.tube {
+  color: azure;
+  border-radius: 7px;
+  background-color: dimgrey;
+}
+
+.menu-icon {
+  width: 28px;
+}
+
+.icon {
+  width: 22px;
+  margin-right: 8px;
+}
+
+.profile-menu-button {
+  display: flex;
+  align-items: center;
 }

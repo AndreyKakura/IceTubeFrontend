@@ -17,10 +17,15 @@ export class AuthService {
   private rolesSubject = new BehaviorSubject<string[]>([]);
   public roleChanges = this.rolesSubject.asObservable();
 
+  private authenticationSubject = new BehaviorSubject<boolean>(false);
+
+  public authenticationChanged = this.authenticationSubject.asObservable();
+
   constructor(private httpClient: HttpClient, private router: Router) {
     // When the service is constructed, update the roles subject with the latest value from localStorage.
     const roles = JSON.parse(localStorage.getItem('roles') || '[]');
     this.rolesSubject.next(roles);
+    this.authenticationSubject.next(this.isAuthenticated());
   }
 
   apiUrl = "/api/auth"
@@ -37,6 +42,7 @@ export class AuthService {
           localStorage.setItem("roles", JSON.stringify(res.roles));
           // When the roles in localStorage are updated, emit a new value from the rolesSubject.
           this.rolesSubject.next(res.roles);
+          this.authenticationSubject.next(true);
         })
       );
   }
@@ -44,6 +50,7 @@ export class AuthService {
   goToLogin() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("roles")
+    this.authenticationSubject.next(false);
     this.router.navigate(['login']);
   }
 
@@ -66,6 +73,7 @@ export class AuthService {
         localStorage.removeItem('access_token');
         localStorage.removeItem('roles');
         this.rolesSubject.next([]);
+        this.authenticationSubject.next(false);
         this.router.navigate(['login']);
       }
     });

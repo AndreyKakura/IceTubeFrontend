@@ -44,6 +44,8 @@ import { VideoCardComponent } from './video-card/video-card.component';
 import { CommentsComponent } from './comments/comments.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UserVideosComponent } from './user-videos/user-videos.component';
+import { IfAuthenticatedDirective } from './if-authenticated.directive';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { UserVideosComponent } from './user-videos/user-videos.component';
     CommentsComponent,
     UserCardComponent,
     UserVideosComponent,
+    IfAuthenticatedDirective,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +96,7 @@ import { UserVideosComponent } from './user-videos/user-videos.component';
     PlyrModule,
     MatSidenavModule,
     MatListModule,
+    MatMenuModule,
   ],
   providers: [
     {

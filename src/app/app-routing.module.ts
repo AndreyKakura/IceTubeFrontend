@@ -16,14 +16,14 @@ import {UserVideosComponent} from "./user-videos/user-videos.component";
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'upload-video', component: UploadVideoComponent},
+  {path: 'upload-video', component: UploadVideoComponent, canActivate: [RoleGuard], data: {role: 'ROLE_USER'}},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'video/history', component: HistoryComponent},
+  {path: 'video/history', component: HistoryComponent, canActivate: [RoleGuard], data: {role: 'ROLE_USER'}},
   {path: 'video/publishedby/:userId', component: UserVideosComponent},
   {path: 'video/:videoId', component: VideoComponent},
-  {path: 'user/likedvideos', component: LikedVideosComponent},
-  {path: 'user/subscriptions', component: SubscriptionsComponent},
+  {path: 'user/likedvideos', component: LikedVideosComponent, canActivate: [RoleGuard], data: {role: 'ROLE_USER'}},
+  {path: 'user/subscriptions', component: SubscriptionsComponent, canActivate: [RoleGuard], data: {role: 'ROLE_USER'}},
   {
     path: 'user',
     component: UserComponent,

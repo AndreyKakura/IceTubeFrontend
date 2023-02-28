@@ -46,4 +46,7 @@ export class VideoService {
     return this.httpClient.get<Array<VideoDto>>("api/video/publishedby/" + userId);
   }
 
+  getSubscribedVideos(): Observable<Array<VideoDto>> {
+    return this.httpClient.get<Array<VideoDto>>("api/video/subscriptions");
+  }
 }

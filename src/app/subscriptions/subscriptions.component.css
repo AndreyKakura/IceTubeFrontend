@@ -5,3 +5,9 @@
 .m-5 {
   margin: 5px;
 }
+.list-video {
+  display: flex;
+  flex-wrap: wrap;;
+  justify-content: center;
+  gap: 10px;
+}

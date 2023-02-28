@@ -1,12 +1,40 @@
 <mat-list>
   <mat-list-item routerLink="/home" routerLinkActive="active-link" (click)="toggleSidebar()">
-    <mat-icon>home</mat-icon>
-    <span>Home</span>
+    <div class="list-item">
+      <img src="assets/home-icon.png" class="sidenav-icon" alt="home-icon">
+      <span>Home</span>
+    </div>
+
   </mat-list-item>
-  <mat-list-item routerLink="/upload-video" routerLinkActive="active-link" (click)="toggleSidebar()">
-    <mat-icon>video_call</mat-icon>
-    <span>Загрузить видео</span>
+  <mat-list-item routerLink="/upload-video" routerLinkActive="active-link" (click)="toggleSidebar()"
+                 *ifAuthenticated='true'>
+    <div class="list-item">
+      <img src="assets/plus-icon.png" class="sidenav-icon" alt="home-icon">
+      <span>Загрузить видео</span>
+    </div>
   </mat-list-item>
-  <mat-list-item routerLink="/register" routerLinkActive="active-link" (click)="toggleSidebar()"> Регистрация
+
+  <mat-list-item routerLink="/user/subscriptions" routerLinkActive="active-link" (click)="toggleSidebar()"
+                 *ifAuthenticated='true'>
+    <div class="list-item">
+      <img src="assets/subscriptions-icon.png" class="sidenav-icon" alt="home-icon">
+      <span>Подписки</span>
+    </div>
+  </mat-list-item>
+
+  <mat-list-item routerLink="/video/history" routerLinkActive="active-link" (click)="toggleSidebar()"
+                 *ifAuthenticated='true'>
+    <div class="list-item">
+      <img src="assets/history-icon.png" class="sidenav-icon" alt="home-icon">
+      <span>История просмторов</span>
+    </div>
+  </mat-list-item>
+
+  <mat-list-item routerLink="/user/likedvideos" routerLinkActive="active-link" (click)="toggleSidebar()"
+                 *ifAuthenticated='true'>
+    <div class="list-item">
+      <img src="assets/like-icon.png" class="sidenav-icon" alt="home-icon">
+      <span>Понривившиеся видео</span>
+    </div>
   </mat-list-item>
 </mat-list>

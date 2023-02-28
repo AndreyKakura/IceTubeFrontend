@@ -10,76 +10,18 @@ html, body {
 body {
   --color-button: #0D606F;
   margin: 0;
-
   font-family: 'Red Hat Text', sans-serif;
 }
 
-
-.link2 {
-  color: red;
+.link {
+  font-size: 18px;
+  color: steelblue;
 }
 
-/*@media (max-width: 500px) {*/
-
-/*}*/
-/*.plyr__controls {*/
-/*  display: flex;*/
-/*  !*flex-direction: column;*!*/
-/*  flex-wrap: wrap;*/
-/*}*/
-
-/*.plyr__progress-container {*/
-/*  !*order: 2;*!*/
-/*}*/
-
-/*.plyr__progress-container {*/
-/*  flex-basis: 100%;*/
-/*}*/
-
-/*.plyr__control:not(.plyr__progress) {*/
-/*  !*order: -1;*!*/
-/*  !*margin-right: 10px;*!*/
-/*  !*margin-bottom: 10px;*!*/
-/*}*/
-
-
-/*.plyr__controls {*/
-/*  flex-wrap: wrap;*/
-/*  justify-content: flex-start;*/
-/*}*/
-
-/*.plyr__controls .plyr__time {*/
-/*  order: 1;*/
-/*  flex-grow: 1;*/
-/*  flex-basis: 100%;*/
-/*  text-align: left;*/
-/*}*/
-/*.plyr__controls .plyr__progress {*/
-/*  order: 1;*/
-/*  flex-grow: 1;*/
-/*  flex-basis: 100%;*/
-/*  text-align: left;*/
-/*}*/
-
-
-
-/*.plyr__time {*/
-/*  order: 1;*/
-/*}*/
-
-/*.plyr__control {*/
-/*  order: 2;*/
-/*}*/
-
-
-
 @media (max-width: 600px) {
-
   .plyr__controls .plyr__volume {
     display: none;
   }
-
-
 }
 
 .body {
@@ -88,4 +30,7 @@ body {
 
 .pointer {
   cursor: pointer;
+}
+html.sidebar-opened {
+  overflow: hidden;
 }

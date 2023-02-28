@@ -5,3 +5,12 @@
   padding: 10px;
   border-radius: 5px;
 }
+.upload-form {
+  overflow: hidden;
+}
+mat-form-field {
+  width: 80%;
+}
+.m-t-10 {
+  margin-top: 10px;
+}

@@ -32,9 +32,9 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(authreq).pipe(
         catchError(errordata => {
           if (errordata.status === 401) {
-            if(this.authService.getAccessToken() == null) {
-              this.authService.goToLogin();
-            }
+            // if(this.authService.getAccessToken() == null) {
+            //   this.authService.goToLogin();
+            // }
             if (this.isRefreshing) {
               this.isRefreshing = false;
               console.log("intercept caught 401, is refreshing = true");

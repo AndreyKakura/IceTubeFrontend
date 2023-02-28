@@ -1,6 +1,6 @@
+<h2>Комментарии</h2>
 <form [formGroup]="commentForm">
-
-  <div>
+  <div *ifAuthenticated='true'>
     <mat-form-field  class="new-comment" subscriptSizing="dynamic">
       <mat-label>Поделитесь своим авторитетным мнением</mat-label>
       <textarea matInput formControlName="text" cdkTextareaAutosize></textarea>
@@ -8,8 +8,8 @@
         К сожалению, это поле должно быть заполнено
       </mat-error>
     </mat-form-field>
+    <button type="submit" class="comment-button" mat-raised-button (click)="postComment()">ПРОКОММЕНТИРОВАТЬ</button>
   </div>
-  <button type="submit" class="comment-button" mat-raised-button (click)="postComment()">ПРОКОММЕНТИРОВАТЬ</button>
 </form>
 <div *ngFor="let comment of comments">
   <mat-card class="comment-card">

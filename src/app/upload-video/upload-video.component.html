@@ -1,6 +1,5 @@
-<div class="center">
   <div>
-    <form [formGroup]="uploadVideoForm">
+    <form [formGroup]="uploadVideoForm" class="upload-form">
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Название</mat-label>
@@ -10,7 +9,7 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Описание</mat-label>
-          <textarea matInput [formControl]="description" required></textarea>
+          <textarea matInput cdkTextareaAutosize [formControl]="description" required></textarea>
         </mat-form-field>
       </div>
       <div>
@@ -62,9 +61,8 @@
           </div>
         </label>
       </div>
-      <div>
+      <div class="m-t-10">
         <button type="submit" mat-raised-button color="primary" (click)="uploadVideo()">Сохранить</button>
       </div>
     </form>
   </div>
-</div>

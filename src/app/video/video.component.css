@@ -20,9 +20,7 @@
 }
 
 .grade-button {
-  display: flex;
-  align-items: center;
-  font-size: 20px;
+  font-size: 22px;
   border: 1px solid lightgrey;
 }
 
@@ -30,6 +28,11 @@
   font-size: 24px;
   padding-right: 7px;
   padding-bottom: 5px;
+}
+
+.grade-center {
+  display: flex;
+  align-items: center;
 }
 
 .like-button {
@@ -48,3 +51,7 @@
   }
 }
 
+.icon {
+  width: 24px;
+  margin-right: 5px;
+}

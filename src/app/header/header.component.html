@@ -1,23 +1,47 @@
 <mat-toolbar>
   <mat-toolbar-row>
-<!--    <button mat-icon-button (click)="toggleSidebar()">-->
-<!--      <mat-icon>menu</mat-icon>-->
-<!--    </button>-->
+    <!--    <button mat-icon-button (click)="toggleSidebar()">-->
+    <!--      <mat-icon>menu</mat-icon>-->
+    <!--    </button>-->
     <div class="menu-button" (click)="toggleSidebar()">
-      <mat-icon>menu</mat-icon>
+      <img class="menu-icon" src="assets/menu-icon.png" alt="menu_icon">
     </div>
-    <span>IceTube</span>
+
+    <a mat-button routerLink="/home" class="icetube"><span class="ice">Ice</span><span class="tube">Tube</span></a>
+
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>video_call</mat-icon>
+    <!--    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">-->
+    <!--      <mat-icon>video_call</mat-icon>-->
+    <!--    </button>-->
+    <!--    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">-->
+    <!--      <mat-icon>account_circle</mat-icon>-->
+    <!--    </button>-->
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <img src="assets/profile-icon.png"  alt="profile-icon">
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-<!--    <a routerLink="/user" mat-raised-button>User</a>-->
-<!--    <button mat-raised-button *ifRoles="['ROLE_USER']">User</button>-->
-    <a routerLink="/user" mat-raised-button *ifRoles="['ROLE_USER']">User</a>
-    <button mat-raised-button (click)="testUser()">Test User</button>
-    <button mat-raised-button color="accent" (click)="proceedLogout()">Logout</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ifAuthenticated='false' routerLink="/login">
+        <div class="profile-menu-button">
+          <img src="assets/login-icon.png" class="icon" alt="login-icon">
+          <span>Войти</span>
+        </div>
+      </button>
+      <button mat-menu-item *ifAuthenticated='false' routerLink="/register">
+        <div class="profile-menu-button">
+          <img src="assets/register-icon.png" class="icon" alt="register-icon">
+          <span>Зарегистрироваться</span>
+        </div>
+      </button>
+      <button mat-menu-item *ifAuthenticated='true' (click)="proceedLogout()">
+        <div class="profile-menu-button">
+          <img src="assets/logout-icon.png" class="icon" alt="logout-icon">
+          <span>Выйти</span>
+        </div>
+
+      </button>
+    </mat-menu>
+    <!--    <a routerLink="/user" mat-raised-button *ifRoles="['ROLE_USER']">User</a>-->
+    <!--    <button mat-raised-button (click)="testUser()">Test User</button>-->
+    <!--    <button mat-raised-button color="accent" (click)="proceedLogout()">Logout</button>-->
   </mat-toolbar-row>
 </mat-toolbar>
