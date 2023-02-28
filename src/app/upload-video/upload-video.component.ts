@@ -17,7 +17,6 @@ export class UploadVideoComponent {
   uploadVideoForm: FormGroup;
   title: FormControl = new FormControl('');
   description: FormControl = new FormControl('');
-  videoStatus: FormControl = new FormControl('');
   //
   previewFile!: File;
   videoFile!: File;
@@ -30,7 +29,6 @@ export class UploadVideoComponent {
     this.uploadVideoForm = new FormGroup({
       title: this.title,
       description: this.description,
-      videoStatus: this.videoStatus,
     })
 
   }
@@ -89,7 +87,6 @@ export class UploadVideoComponent {
       newVideoFormData.append('title', this.uploadVideoForm.get('title')?.value);
       newVideoFormData.append('description', this.uploadVideoForm.get('description')?.value);
       newVideoFormData.append('tags', this.tags.toString());
-      newVideoFormData.append('videoStatus', this.uploadVideoForm.get('videoStatus')?.value);
       newVideoFormData.append('videoFile', this.videoFile);
       newVideoFormData.append('previewFile', this.previewFile);
       this.videoService.uploadVideo(newVideoFormData).subscribe(data => {

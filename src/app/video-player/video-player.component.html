@@ -1,56 +1,13 @@
-<!--<vg-player class="p-b-50">-->
-<!--  <vg-overlay-play></vg-overlay-play>-->
-<!--  <vg-buffering></vg-buffering>-->
+<!--<plyr class="video-player" plyrTitle="Video 1" [plyrPlaysInline]="true" class="rounded"-->
+<!--      [plyrSources]="[{src: streamUrl, type: 'video/mp4'}]"-->
+<!--      [plyrTracks]="[{kind: 'captions', label: 'Russian', src: '../../assets/002.vtt', default: true}]"-->
+<!--      [plyrOptions]="{controls: ['play-large',  'pause-large', 'play', 'current-time', 'progress', 'duration', 'mute', 'volume', 'captions', 'pip', 'airplay', 'settings', 'fullscreen']}"-->
 
-
-<!--&lt;!&ndash;    <vg-controls [vgAutohide]="true" [vgAutohideTime]="1">&ndash;&gt;-->
-<!--  <vg-controls>-->
-<!--    <vg-play-pause></vg-play-pause>-->
-<!--    <vg-playback-button></vg-playback-button>-->
-
-<!--    <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>-->
-
-<!--    <vg-scrub-bar>-->
-<!--      <vg-scrub-bar-current-time></vg-scrub-bar-current-time>-->
-<!--      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>-->
-<!--    </vg-scrub-bar>-->
-
-<!--&lt;!&ndash;    <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>&ndash;&gt;-->
-<!--    <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>-->
-
-<!--    <vg-track-selector></vg-track-selector>-->
-<!--    <vg-mute></vg-mute>-->
-<!--    <vg-volume></vg-volume>-->
-
-<!--    <vg-fullscreen></vg-fullscreen>-->
-<!--  </vg-controls>-->
-
-<!--  <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto">-->
-<!--    <source src="{{streamUrl}}" type="video/mp4">-->
-<!--    <track kind="subtitles" label="Russian" src="../../assets/002.vtt" srclang="ru"/>-->
-<!--  </video>-->
-<!--</vg-player>-->
-
-<!--<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>-->
-
-<!--<button (click)="play()">Play</button>-->
-
-<!--<video #videoPlayer-->
-<!--       controls-->
-<!--       crossorigin-->
-<!--       playsinline-->
-<!--       poster="/path/to/poster.jpg"-->
-<!--       data-plyr-config="{ 'autoplay': true, 'fullscreen': { 'enabled': true, 'fallback': true } }">-->
-<!--  <source src="{{streamUrl}}" type="video/mp4">-->
-<!--</video>-->
-
-<plyr class="video-player" plyrTitle="Video 1" [plyrPlaysInline]="true" class="rounded"
+<!--      [plyrPoster]="previewUrl"-->
+<!--      (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>-->
+<plyr class="video-player" plyrTitle="icetube video" [plyrPlaysInline]="true" class="rounded"
       [plyrSources]="[{src: streamUrl, type: 'video/mp4'}]"
-      [plyrTracks]="[{kind: 'captions', label: 'Russian', src: '../../assets/002.vtt', default: true}]"
       [plyrOptions]="{controls: ['play-large',  'pause-large', 'play', 'current-time', 'progress', 'duration', 'mute', 'volume', 'captions', 'pip', 'airplay', 'settings', 'fullscreen']}"
-
       [plyrPoster]="previewUrl"
       (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
 
-
-<!--<button (click)="play()">Play</button>-->

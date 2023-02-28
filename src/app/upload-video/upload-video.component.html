@@ -1,4 +1,5 @@
-  <div>
+<mat-card>
+<div class="m-5">
     <form [formGroup]="uploadVideoForm" class="upload-form">
       <div>
         <mat-form-field appearance="fill">
@@ -10,15 +11,6 @@
         <mat-form-field appearance="fill">
           <mat-label>Описание</mat-label>
           <textarea matInput cdkTextareaAutosize [formControl]="description" required></textarea>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="fill">
-          <mat-label>Тип видео</mat-label>
-          <mat-select required [formControl]="videoStatus">
-            <mat-option value="PUBLIC">Общедоступное</mat-option>
-            <mat-option value="PRIVATE">Частное</mat-option>
-          </mat-select>
         </mat-form-field>
       </div>
       <div>
@@ -66,3 +58,4 @@
       </div>
     </form>
   </div>
+</mat-card>

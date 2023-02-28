@@ -4,7 +4,6 @@ export interface VideoDto {
   title: string;
   description: string;
   tags: Array<string>;
-  videoStatus: string;
   streamUrl: string;
   previewUrl: string;
 
