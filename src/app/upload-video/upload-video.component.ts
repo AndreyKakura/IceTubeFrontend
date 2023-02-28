@@ -14,6 +14,8 @@ import {Router} from "@angular/router";
 })
 export class UploadVideoComponent {
 
+  isLoading = false;
+
   uploadVideoForm: FormGroup;
   title: FormControl = new FormControl('');
   description: FormControl = new FormControl('');
@@ -83,6 +85,7 @@ export class UploadVideoComponent {
 
   uploadVideo() {
     if (this.uploadVideoForm.valid) {
+      this.isLoading = true;
       const newVideoFormData = new FormData();
       newVideoFormData.append('title', this.uploadVideoForm.get('title')?.value);
       newVideoFormData.append('description', this.uploadVideoForm.get('description')?.value);
@@ -90,6 +93,7 @@ export class UploadVideoComponent {
       newVideoFormData.append('videoFile', this.videoFile);
       newVideoFormData.append('previewFile', this.previewFile);
       this.videoService.uploadVideo(newVideoFormData).subscribe(data => {
+        this.isLoading = false;
         this.matSnackBar.open("Видео успешно загружено на сервер", "Ок", {duration: 3000});
         this.router.navigate(['home']);
       })

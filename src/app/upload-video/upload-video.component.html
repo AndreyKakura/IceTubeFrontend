@@ -1,4 +1,5 @@
 <mat-card>
+  <app-spinner *ngIf="isLoading"></app-spinner>
 <div class="m-5">
     <form [formGroup]="uploadVideoForm" class="upload-form">
       <div>
