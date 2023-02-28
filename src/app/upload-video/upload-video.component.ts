@@ -84,7 +84,7 @@ export class UploadVideoComponent {
   }
 
   uploadVideo() {
-    if (this.uploadVideoForm.valid) {
+    if (this.uploadVideoForm.valid && this.videoFile != null && this.previewFile != null) {
       this.isLoading = true;
       const newVideoFormData = new FormData();
       newVideoFormData.append('title', this.uploadVideoForm.get('title')?.value);
@@ -98,7 +98,7 @@ export class UploadVideoComponent {
         this.router.navigate(['home']);
       })
     } else {
-      this.matSnackBar.open("Пожалуйста, заполните все необходимы поля и прикрепите файлы", "Ладно", {duration: 3000});
+      this.matSnackBar.open("Пожалуйста, заполните все необходимые поля и прикрепите файлы", "Ладно", {duration: 3000});
     }
   }
 
