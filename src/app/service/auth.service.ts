@@ -40,6 +40,7 @@ export class AuthService {
         map(res => {
           localStorage.setItem("access_token", res.accessToken);
           localStorage.setItem("roles", JSON.stringify(res.roles));
+          localStorage.setItem("userId", res.id.toString());
           // When the roles in localStorage are updated, emit a new value from the rolesSubject.
           this.rolesSubject.next(res.roles);
           this.authenticationSubject.next(true);
@@ -50,6 +51,7 @@ export class AuthService {
   goToLogin() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("roles")
+    localStorage.removeItem("userId")
     this.authenticationSubject.next(false);
     this.router.navigate(['login']);
   }
@@ -72,6 +74,7 @@ export class AuthService {
       complete: () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('roles');
+        localStorage.removeItem("userId");
         this.rolesSubject.next([]);
         this.authenticationSubject.next(false);
         this.router.navigate(['login']);

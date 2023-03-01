@@ -4,9 +4,9 @@
     <mat-form-field  class="new-comment" subscriptSizing="dynamic">
       <mat-label>Поделитесь своим авторитетным мнением</mat-label>
       <textarea matInput formControlName="text" cdkTextareaAutosize></textarea>
-      <mat-error *ngIf="commentForm.get('text')?.hasError('required')">
-        К сожалению, это поле должно быть заполнено
-      </mat-error>
+<!--      <mat-error *ngIf="commentForm.get('text')?.hasError('required')">-->
+<!--        К сожалению, это поле должно быть заполнено-->
+<!--      </mat-error>-->
     </mat-form-field>
     <button type="submit" class="comment-button" mat-raised-button (click)="postComment()">ПРОКОММЕНТИРОВАТЬ</button>
   </div>

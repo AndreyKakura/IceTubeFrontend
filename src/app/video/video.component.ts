@@ -85,4 +85,8 @@ export class VideoComponent {
       this.isSubscribedToAuthor = isSubscribed;
     })
   }
+
+  getUserId() : number {
+    return this.userService.getUserId();
+  }
 }

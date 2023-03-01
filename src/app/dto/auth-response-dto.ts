@@ -4,4 +4,6 @@ export interface AuthResponseDto {
   refreshToken: string,
 
   roles: Array<string>
+
+  id: number
 }

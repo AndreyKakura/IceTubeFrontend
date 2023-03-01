@@ -24,12 +24,14 @@
     </div>
     <p class="description">Просмотров: {{viewCount}}</p>
     <div *ifAuthenticated='true'>
-      <button *ngIf="!isSubscribedToAuthor" mat-raised-button color="warn"
-              (click)="subscribe()">ПОДПИСАТЬСЯ
-      </button>
-      <button *ngIf="isSubscribedToAuthor" mat-raised-button color="primary"
-              (click)="unsubscribe()">ОТПИСАТЬСЯ
-      </button>
+      <div *ngIf="getUserId() != authorId">
+        <button *ngIf="!isSubscribedToAuthor" mat-raised-button color="warn"
+                (click)="subscribe()">ПОДПИСАТЬСЯ
+        </button>
+        <button *ngIf="isSubscribedToAuthor" mat-raised-button color="primary"
+                (click)="unsubscribe()">ОТПИСАТЬСЯ
+        </button>
+      </div>
     </div>
     <hr>
     <mat-chip-listbox>

@@ -31,4 +31,8 @@ export class UserService {
   getSubscriptions(): Observable<Array<UserDto>> {
     return this.httpClient.get<Array<UserDto>>("api/user/subscriptions");
   }
+
+  getUserId(): number {
+    return parseInt(localStorage.getItem("userId") || '0');
+  }
 }
