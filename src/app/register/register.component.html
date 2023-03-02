@@ -44,7 +44,8 @@
           <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password" name="password">
           <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
                   [attr.aria-pressed]="hidePassword">
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <img *ngIf="!hidePassword" src="assets/hide-icon.png" alt="X">
+            <img *ngIf="hidePassword" src="assets/show-icon.png" alt="X">
           </button>
           <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">Заполните это поле</mat-error>
           <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">Минимум 4 символа</mat-error>
