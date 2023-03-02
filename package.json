@@ -23,6 +23,7 @@
     "@angular/service-worker": "^15.2.0",
     "@videogular/ngx-videogular": "^7.0.1",
     "ngx-file-drop": "^14.0.2",
+    "ngx-infinite-scroll": "^15.0.0",
     "ngx-plyr": "^4.0.1",
     "plyr": "^3.7.3",
     "rxjs": "^7.8.0",

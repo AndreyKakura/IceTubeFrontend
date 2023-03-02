@@ -1,5 +1,11 @@
-<div class="list-video">
-  <div *ngFor="let video of videos" >
-    <app-video-card [video]="video" ></app-video-card>
+<div class="home">
+  <div class="list-video" #videoContainer infiniteScroll (scrolled)="onScroll()">
+    <div *ngFor="let video of videos">
+      <app-video-card [video]="video"></app-video-card>
+    </div>
   </div>
+<div class="center">
+  <button mat-raised-button *ngIf="!loading"  class="center" (click)="loadVideos()">Загрузить еще</button>
+</div>
+
 </div>

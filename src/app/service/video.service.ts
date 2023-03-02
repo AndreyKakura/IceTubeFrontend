@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {FileSystemFileEntry} from "ngx-file-drop";
 import {Observable} from "rxjs";
 import {VideoDto} from "../dto/video-dto";
+import {VideoPage} from "../dto/video-page";
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,10 @@ export class VideoService {
 
   getSubscribedVideos(): Observable<Array<VideoDto>> {
     return this.httpClient.get<Array<VideoDto>>("api/video/subscriptions");
+  }
+
+  getVideoPage(page: number, size: number): Observable<VideoPage> {
+    const url = `api/video?pageNumber=${page}&pageSize=${size}`;
+    return this.httpClient.get<VideoPage>(url);
   }
 }

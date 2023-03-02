@@ -4,3 +4,11 @@
   justify-content: center;
   gap: 10px;
 }
+.home {
+  overflow: hidden;
+}
+
+.center {
+  text-align: center;
+  margin-top: 10px;
+}

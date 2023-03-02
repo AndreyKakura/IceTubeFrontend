@@ -48,4 +48,8 @@ export class UserVideosComponent {
     })
   }
 
+  getUserId() : number {
+    return this.userService.getUserId();
+  }
+
 }
