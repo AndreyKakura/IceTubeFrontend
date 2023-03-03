@@ -1,6 +1,12 @@
-<h2 class="center">Понравившиеся видео</h2>
-<div class="list-video">
-  <div *ngFor="let video of videos" >
-    <app-video-card [video]="video" ></app-video-card>
+<div class="hidden-overflow">
+  <h2 class="center">Понравившиеся видео</h2>
+  <div class="list-video" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
+       (scrolled)="onScroll()">
+    <div *ngFor="let video of videos">
+      <app-video-card [video]="video"></app-video-card>
+    </div>
+  </div>
+  <div class="center">
+    <button mat-raised-button *ngIf="!loading" class="center" (click)="loadVideos()">Загрузить еще</button>
   </div>
 </div>

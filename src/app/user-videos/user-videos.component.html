@@ -14,7 +14,8 @@
   </div>
 
 
-  <div class="list-video">
+  <div class="list-video" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
+       (scrolled)="onScroll()">
     <div *ngFor="let video of videos">
       <app-video-card [video]="video"></app-video-card>
     </div>

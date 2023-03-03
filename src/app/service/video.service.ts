@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {FileSystemFileEntry} from "ngx-file-drop";
 import {Observable} from "rxjs";
 import {VideoDto} from "../dto/video-dto";
-import {VideoPage} from "../dto/video-page";
+import {VideoPageDto} from "../dto/video-page-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -39,20 +39,31 @@ export class VideoService {
     return this.httpClient.post<VideoDto>("api/video/" + videoId + "/dislike", null);
   }
 
-  getHistory(): Observable<Array<VideoDto>> {
-    return this.httpClient.get<Array<VideoDto>>("api/video/history");
+  getHistoryPage(page: number, size: number): Observable<VideoPageDto> {
+    const url = `api/video/history?pageNumber=${page}&pageSize=${size}`;
+
+    return this.httpClient.get<VideoPageDto>(url);
   }
 
-  getPublishedByUserVideos(userId: number): Observable<Array<VideoDto>> {
-    return this.httpClient.get<Array<VideoDto>>("api/video/publishedby/" + userId);
+  getPublishedByUserVideosPage(userId: number, page: number, size: number): Observable<VideoPageDto> {
+    const url = `api/video/publishedby/${userId}?pageNumber=${page}&pageSize=${size}`;
+    return this.httpClient.get<VideoPageDto>(url);
   }
 
-  getSubscribedVideos(): Observable<Array<VideoDto>> {
-    return this.httpClient.get<Array<VideoDto>>("api/video/subscriptions");
+
+  getSubscribedVideos(page: number, size: number): Observable<VideoPageDto> {
+    const url = `api/video/subscriptions?pageNumber=${page}&pageSize=${size}`;
+    return this.httpClient.get<VideoPageDto>(url);
   }
 
-  getVideoPage(page: number, size: number): Observable<VideoPage> {
+  getVideoPage(page: number, size: number): Observable<VideoPageDto> {
     const url = `api/video?pageNumber=${page}&pageSize=${size}`;
-    return this.httpClient.get<VideoPage>(url);
+    return this.httpClient.get<VideoPageDto>(url);
   }
+
+  getLikedVideos(page: number, size: number): Observable<VideoPageDto> {
+    const url = `api/video/liked?pageNumber=${page}&pageSize=${size}`;
+    return this.httpClient.get<VideoPageDto>(url);
+  }
+
 }

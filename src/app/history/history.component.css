@@ -4,6 +4,8 @@
   justify-content: center;
   gap: 10px;
 }
+
 .center {
   text-align: center;
+  margin-top: 10px;
 }
