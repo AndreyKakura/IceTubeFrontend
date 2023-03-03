@@ -28,6 +28,10 @@ export class SubscriptionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadVideos();
+    this.userService.getSubscriptions().subscribe(users => {
+        this.users = users;
+      }
+    )
   }
 
   onScroll() {
