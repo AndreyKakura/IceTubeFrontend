@@ -10,6 +10,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  errorMessage?: string;
+
   constructor(private builder: FormBuilder, private matSnackBar: MatSnackBar, private authService: AuthService, private router: Router) {
 
   }
@@ -36,7 +39,10 @@ export class LoginComponent {
       this.authService.loginUser(this.loginForm.value)
         .subscribe(() => {
           this.router.navigate(['']);
-        })
+        },
+          error => {
+          this.errorMessage = error;
+          })
     }
   }
 

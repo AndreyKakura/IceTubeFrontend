@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {AuthResponseDto} from "../dto/auth-response-dto";
 import {Router} from "@angular/router";
-import {BehaviorSubject, Observable, of} from "rxjs";
-import {map} from "rxjs/operators";
+import {BehaviorSubject, Observable, of, throwError} from "rxjs";
+import {catchError, map} from "rxjs/operators";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -44,8 +44,16 @@ export class AuthService {
           // When the roles in localStorage are updated, emit a new value from the rolesSubject.
           this.rolesSubject.next(res.roles);
           this.authenticationSubject.next(true);
-        })
+        }),
+        catchError(this.handleLoginError)
       );
+  }
+
+  private handleLoginError(error: HttpErrorResponse) {
+    if (error.status === 403) {
+      return throwError('Неверный логин или пароль');
+    }
+    return throwError('Ошибка сервера');
   }
 
   goToLogin() {
