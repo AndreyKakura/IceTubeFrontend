@@ -27,6 +27,8 @@ export class UploadVideoComponent {
   readonly separatorKeysCodes = [ENTER] as const;
   tags: string[] = [];
 
+  errorMessage?:string;
+
   constructor(private videoService: VideoService, private matSnackBar: MatSnackBar, private router: Router, private builder: FormBuilder) {
     this.uploadVideoForm = new FormGroup({
       title: this.title,
@@ -96,7 +98,11 @@ export class UploadVideoComponent {
         this.isLoading = false;
         this.matSnackBar.open("Видео успешно загружено на сервер", "Ок", {duration: 3000});
         this.router.navigate(['home']);
-      })
+      },
+        error => {
+        this.errorMessage = error;
+        this.isLoading = false;
+        })
     } else {
       this.matSnackBar.open("Пожалуйста, заполните все необходимые поля и прикрепите файлы", "Ладно", {duration: 3000});
     }

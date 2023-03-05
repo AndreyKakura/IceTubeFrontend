@@ -17,3 +17,7 @@ mat-form-field {
 .m-5 {
   margin: 5px;
 }
+
+.error {
+  color: red;
+}

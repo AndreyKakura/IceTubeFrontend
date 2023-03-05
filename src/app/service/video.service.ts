@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {FileSystemFileEntry} from "ngx-file-drop";
-import {Observable} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {VideoDto} from "../dto/video-dto";
 import {VideoPageDto} from "../dto/video-page-dto";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,10 @@ export class VideoService {
   // }
 
   uploadVideo(newVideoFormData: FormData): Observable<VideoDto> {
-    return this.httpClient.post<VideoDto>("api/video/upload", newVideoFormData);
+    return this.httpClient.post<VideoDto>("api/video/upload", newVideoFormData)
+      .pipe(catchError(() => {
+        return throwError("Ошибка сервера");
+      }))
   }
 
   getVideo(videoId: number): Observable<VideoDto> {
