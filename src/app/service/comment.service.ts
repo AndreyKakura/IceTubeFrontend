@@ -12,10 +12,10 @@ export class CommentService {
   }
 
   postComment(commentDto: any, videoId: number): Observable<any> {
-    return this.httpClient.post<any>("api/video/" + videoId + "/comment", commentDto);
+    return this.httpClient.post<any>("/api/video/" + videoId + "/comment", commentDto);
   }
 
   getAllComments(videoId: number): Observable<Array<CommentDto>> {
-    return this.httpClient.get<Array<CommentDto>>("api/video/" + videoId + "/comment");
+    return this.httpClient.get<Array<CommentDto>>("/api/video/" + videoId + "/comment");
   }
 }

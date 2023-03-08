@@ -17,56 +17,56 @@ export class VideoService {
   // uploadVideo(fileEntry: File): Observable<UploadVideoResponse> {
   //   const formData = new FormData()
   //   formData.append('file', fileEntry, fileEntry.name)
-  //   return this.httpClient.post<UploadVideoResponse>("api/video/upload", formData)
+  //   return this.httpClient.post<UploadVideoResponse>("/api/video/upload", formData)
   // }
 
   uploadVideo(newVideoFormData: FormData): Observable<VideoDto> {
-    return this.httpClient.post<VideoDto>("api/video/upload", newVideoFormData)
+    return this.httpClient.post<VideoDto>("/api/video/upload", newVideoFormData)
       .pipe(catchError(() => {
         return throwError("Ошибка сервера");
       }))
   }
 
   getVideo(videoId: number): Observable<VideoDto> {
-    return this.httpClient.get<VideoDto>("api/video/" + videoId);
+    return this.httpClient.get<VideoDto>("/api/video/" + videoId);
   }
 
   getAllVideos(): Observable<Array<VideoDto>> {
-    return this.httpClient.get<Array<VideoDto>>("api/video");
+    return this.httpClient.get<Array<VideoDto>>("/api/video");
   }
 
   likeVideo(videoId: number): Observable<VideoDto> {
-    return this.httpClient.post<VideoDto>("api/video/" + videoId + "/like", null);
+    return this.httpClient.post<VideoDto>("/api/video/" + videoId + "/like", null);
   }
 
   dislikeVideo(videoId: number): Observable<VideoDto> {
-    return this.httpClient.post<VideoDto>("api/video/" + videoId + "/dislike", null);
+    return this.httpClient.post<VideoDto>("/api/video/" + videoId + "/dislike", null);
   }
 
   getHistoryPage(page: number, size: number): Observable<VideoPageDto> {
-    const url = `api/video/history?pageNumber=${page}&pageSize=${size}`;
+    const url = `/api/video/history?pageNumber=${page}&pageSize=${size}`;
 
     return this.httpClient.get<VideoPageDto>(url);
   }
 
   getPublishedByUserVideosPage(userId: number, page: number, size: number): Observable<VideoPageDto> {
-    const url = `api/video/publishedby/${userId}?pageNumber=${page}&pageSize=${size}`;
+    const url = `/api/video/publishedby/${userId}?pageNumber=${page}&pageSize=${size}`;
     return this.httpClient.get<VideoPageDto>(url);
   }
 
 
   getSubscribedVideos(page: number, size: number): Observable<VideoPageDto> {
-    const url = `api/video/subscriptions?pageNumber=${page}&pageSize=${size}`;
+    const url = `/api/video/subscriptions?pageNumber=${page}&pageSize=${size}`;
     return this.httpClient.get<VideoPageDto>(url);
   }
 
   getVideoPage(page: number, size: number): Observable<VideoPageDto> {
-    const url = `api/video?pageNumber=${page}&pageSize=${size}`;
+    const url = `/api/video?pageNumber=${page}&pageSize=${size}`;
     return this.httpClient.get<VideoPageDto>(url);
   }
 
   getLikedVideos(page: number, size: number): Observable<VideoPageDto> {
-    const url = `api/video/liked?pageNumber=${page}&pageSize=${size}`;
+    const url = `/api/video/liked?pageNumber=${page}&pageSize=${size}`;
     return this.httpClient.get<VideoPageDto>(url);
   }
 

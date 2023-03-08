@@ -13,23 +13,23 @@ export class UserService {
   }
 
   getById(userId: number): Observable<UserDto> {
-    return this.httpClient.get<UserDto>("api/user/" + userId);
+    return this.httpClient.get<UserDto>("/api/user/" + userId);
   }
 
   subscribe(authorId: number): Observable<boolean> {
-    return this.httpClient.post<boolean>("api/user/subscribe/" + authorId, null);
+    return this.httpClient.post<boolean>("/api/user/subscribe/" + authorId, null);
   }
 
   unsubscribe(authorId: number): Observable<boolean> {
-    return this.httpClient.post<boolean>("api/user/unsubscribe/" + authorId, null);
+    return this.httpClient.post<boolean>("/api/user/unsubscribe/" + authorId, null);
   }
 
   getLikedVideos(): Observable<Array<VideoDto>> {
-    return this.httpClient.get<Array<VideoDto>>("api/user/likedvideos")
+    return this.httpClient.get<Array<VideoDto>>("/api/user/likedvideos")
   }
 
   getSubscriptions(): Observable<Array<UserDto>> {
-    return this.httpClient.get<Array<UserDto>>("api/user/subscriptions");
+    return this.httpClient.get<Array<UserDto>>("/api/user/subscriptions");
   }
 
   getUserId(): number {

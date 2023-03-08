@@ -25,10 +25,10 @@ export class VideoPlayerComponent {
   }
 
 
-  getSubtitles(): Observable<any> {
-    console.log(this.httpClient.get<any>("api/video/subtitles"));
-    return this.httpClient.get<any>("api/video/subtitles");
-  }
+  // getSubtitles(): Observable<any> {
+  //   console.log(this.httpClient.get<any>("/api/video/subtitles"));
+  //   return this.httpClient.get<any>("/api/video/subtitles");
+  // }
 
   played(event: Plyr.PlyrEvent) {
     console.log('played', event);
