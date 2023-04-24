@@ -19,4 +19,6 @@ export interface VideoDto {
 
   isSubscribedToAuthor: boolean;
 
+  videoResolution: number;
+
 }

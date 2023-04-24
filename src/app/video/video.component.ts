@@ -33,6 +33,7 @@ export class VideoComponent {
 
   isSubscribedToAuthor?: boolean;
 
+  videoResolution!: number | 360;
 
   videoAvailable: boolean = false;
 
@@ -51,6 +52,7 @@ export class VideoComponent {
       this.authorName = data.authorName;
       this.authorId = data.authorId;
       this.isSubscribedToAuthor = data.isSubscribedToAuthor;
+      this.videoResolution = data.videoResolution;
       // setTimeout(() => this.videoAvailable = true, 2000 )
       this.videoAvailable = true;
     })

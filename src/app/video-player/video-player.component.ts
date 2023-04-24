@@ -20,8 +20,62 @@ export class VideoPlayerComponent {
   @Input()
   previewUrl!: string | '';
 
+  @Input()
+  videoResolution!: number | 360;
+
+  videoSources: Plyr.Source[] = [];
+
+
+  options: Plyr.Options = {
+    controls: ['play-large', 'pause-large', 'play', 'current-time', 'progress', 'duration', 'mute', 'volume', 'captions', 'pip', 'airplay', 'settings', 'fullscreen'],
+    settings: ['quality', 'speed'],
+  };
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  ngAfterViewInit() {
+    this.videoSources = [];
+
+    if(this.videoResolution >= 360) {
+      this.videoSources.push(
+        {
+          src: this.streamUrl + '?quality=360p',
+          type: 'video/mp4',
+          size: 360,
+        }
+      )
+    }
+
+    if(this.videoResolution >= 480) {
+      this.videoSources.push(
+        {
+          src: this.streamUrl + '?quality=480p',
+          type: 'video/mp4',
+          size: 480,
+        }
+      )
+    }
+
+    if(this.videoResolution >= 720) {
+      this.videoSources.push(
+        {
+          src: this.streamUrl + '?quality=720p',
+          type: 'video/mp4',
+          size: 720,
+        }
+      )
+    }
+
+    if(this.videoResolution >= 1080) {
+      this.videoSources.push(
+        {
+          src: this.streamUrl + '?quality=1080p',
+          type: 'video/mp4',
+          size: 1080,
+        }
+      )
+    }
   }
 
 
@@ -37,4 +91,5 @@ export class VideoPlayerComponent {
   play(): void {
     this.player.play(); // or this.plyr.player.play()
   }
+
 }
