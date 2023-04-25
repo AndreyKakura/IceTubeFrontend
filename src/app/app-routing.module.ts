@@ -27,8 +27,8 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
-    canActivate: [RoleGuard],
-    data: {role: 'ROLE_USER'},
+    // canActivate: [RoleGuard],
+    // data: {role: 'ROLE_USER'},
   },
   {path: '**', component: NotFoundComponent},
 

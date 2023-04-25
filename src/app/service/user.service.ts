@@ -16,6 +16,10 @@ export class UserService {
     return this.httpClient.get<UserDto>("/api/user/" + userId);
   }
 
+  getCurrent(): Observable<UserDto> {
+    return this.httpClient.get<UserDto>("/api/user/current");
+  }
+
   subscribe(authorId: number): Observable<boolean> {
     return this.httpClient.post<boolean>("/api/user/subscribe/" + authorId, null);
   }

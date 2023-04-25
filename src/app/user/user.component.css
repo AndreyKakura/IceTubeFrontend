@@ -1,0 +1,11 @@
+.profile-menu-button {
+  display: flex;
+  align-items: center;
+}
+.icon {
+  width: 22px;
+  margin-right: 8px;
+}
+.m-5 {
+  margin: 5px;
+}

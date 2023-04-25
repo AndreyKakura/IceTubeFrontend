@@ -10,38 +10,33 @@
     <a mat-button routerLink="/home" class="icetube"><span class="ice">Ice</span><span class="tube">Tube</span></a>
 
     <span class="example-spacer"></span>
-    <!--    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">-->
-    <!--      <mat-icon>video_call</mat-icon>-->
-    <!--    </button>-->
-    <!--    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">-->
-    <!--      <mat-icon>account_circle</mat-icon>-->
-    <!--    </button>-->
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+<!--    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">-->
+<!--      <img src="assets/profile-icon.png"  alt="profile-icon">-->
+<!--    </button>-->
+<!--    <mat-menu #menu="matMenu">-->
+<!--      <button mat-menu-item *ifAuthenticated='false' routerLink="/login">-->
+<!--        <div class="profile-menu-button">-->
+<!--          <img src="assets/login-icon.png" class="icon" alt="login-icon">-->
+<!--          <span>Войти</span>-->
+<!--        </div>-->
+<!--      </button>-->
+<!--      <button mat-menu-item *ifAuthenticated='false' routerLink="/register">-->
+<!--        <div class="profile-menu-button">-->
+<!--          <img src="assets/register-icon.png" class="icon" alt="register-icon">-->
+<!--          <span>Зарегистрироваться</span>-->
+<!--        </div>-->
+<!--      </button>-->
+<!--      <button mat-menu-item *ifAuthenticated='true' (click)="proceedLogout()">-->
+<!--        <div class="profile-menu-button">-->
+<!--          <img src="assets/logout-icon.png" class="icon" alt="logout-icon">-->
+<!--          <span>Выйти</span>-->
+<!--        </div>-->
+
+<!--      </button>-->
+<!--    </mat-menu>-->
+
+    <button mat-icon-button routerLink="/user">
       <img src="assets/profile-icon.png"  alt="profile-icon">
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item *ifAuthenticated='false' routerLink="/login">
-        <div class="profile-menu-button">
-          <img src="assets/login-icon.png" class="icon" alt="login-icon">
-          <span>Войти</span>
-        </div>
-      </button>
-      <button mat-menu-item *ifAuthenticated='false' routerLink="/register">
-        <div class="profile-menu-button">
-          <img src="assets/register-icon.png" class="icon" alt="register-icon">
-          <span>Зарегистрироваться</span>
-        </div>
-      </button>
-      <button mat-menu-item *ifAuthenticated='true' (click)="proceedLogout()">
-        <div class="profile-menu-button">
-          <img src="assets/logout-icon.png" class="icon" alt="logout-icon">
-          <span>Выйти</span>
-        </div>
-
-      </button>
-    </mat-menu>
-    <!--    <a routerLink="/user" mat-raised-button *ifRoles="['ROLE_USER']">User</a>-->
-    <!--    <button mat-raised-button (click)="testUser()">Test User</button>-->
-    <!--    <button mat-raised-button color="accent" (click)="proceedLogout()">Logout</button>-->
   </mat-toolbar-row>
 </mat-toolbar>
