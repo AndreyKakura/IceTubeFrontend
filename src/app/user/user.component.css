@@ -9,3 +9,18 @@
 .m-5 {
   margin: 5px;
 }
+.list-video {
+  display: flex;
+  flex-wrap: wrap;;
+  justify-content: center;
+  gap: 10px;
+}
+.center {
+  text-align: center;
+}
+.name {
+  color: grey;
+}
+.m-b-10 {
+  margin-bottom: 10px;
+}

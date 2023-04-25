@@ -44,6 +44,13 @@
         <a mat-menu-item [href]="link[1]" [text]="link[0] + 'p'"></a>
       </div>
     </mat-menu>
+
+    <div *ngIf="isAuthor" class="m-t-10">
+      <hr/>
+      <h2>Вы - автор этого видео</h2>
+      <button mat-raised-button color="warn" (click)="deleteVideo()">Удалить</button>
+    </div>
+
     <hr>
     <mat-chip-listbox>
       <mat-chip *ngFor="let tag of tags" (click)="onTagClick(tag)">

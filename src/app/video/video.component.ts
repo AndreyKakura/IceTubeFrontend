@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {VideoService} from "../service/video.service";
 import {UserService} from "../service/user.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-video',
@@ -33,13 +34,16 @@ export class VideoComponent {
 
   isSubscribedToAuthor?: boolean;
 
+  isAuthor?: boolean;
+
   videoResolution!: number | 360;
 
   downloadLinks!: Array<[number, string]>;
 
   videoAvailable: boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService, private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService,
+              private userService: UserService, private router: Router, private matSnackBar: MatSnackBar) {
     this.videoId = this.activatedRoute.snapshot.params['videoId'];
     this.videoService.getVideo(this.videoId).subscribe(data => {
       console.log(data.streamUrl);
@@ -54,6 +58,7 @@ export class VideoComponent {
       this.authorName = data.authorName;
       this.authorId = data.authorId;
       this.isSubscribedToAuthor = data.isSubscribedToAuthor;
+      this.isAuthor = data.isAuthor;
       this.videoResolution = data.videoResolution;
       // setTimeout(() => this.videoAvailable = true, 2000 )
       this.downloadLinks = this.videoService.generateDownloadLinks(data.videoResolution, data.id);
@@ -98,5 +103,11 @@ export class VideoComponent {
 
   getUserId(): number {
     return this.userService.getUserId();
+  }
+
+  deleteVideo() {
+    this.videoService.deleteVideo(this.videoId);
+    this.matSnackBar.open('Видео безвозвратно удалено', 'Ок', {duration: 3000});
+    this.router.navigate(["user"]);
   }
 }

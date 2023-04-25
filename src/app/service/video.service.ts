@@ -94,4 +94,9 @@ export class VideoService {
     return downloadLinks;
   }
 
+  deleteVideo(id: number) {
+    const url = `/api/video/${id}`;
+    this.httpClient.delete<VideoPageDto>(url);
+  }
+
 }
