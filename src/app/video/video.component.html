@@ -33,6 +33,17 @@
         </button>
       </div>
     </div>
+    <button mat-raised-button [matMenuTriggerFor]="menu" class="m-t-10">
+      <div class="download-button">
+        <img src="assets/download-icon.png" class="icon" alt="download-icon">
+        <span class="download-text">Скачать</span>
+      </div>
+    </button>
+    <mat-menu #menu="matMenu">
+      <div *ngFor="let link of downloadLinks">
+        <a mat-menu-item [href]="link[1]" [text]="link[0] + 'p'"></a>
+      </div>
+    </mat-menu>
     <hr>
     <mat-chip-listbox>
       <mat-chip *ngFor="let tag of tags" (click)="onTagClick(tag)">

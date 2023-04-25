@@ -52,3 +52,13 @@
   width: 24px;
   margin-right: 5px;
 }
+
+.download-button {
+  display: flex;
+  align-items: center;
+}
+
+.download-text {
+  font-size: 16px;
+  color: steelblue;
+}

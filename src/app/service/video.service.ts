@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {FileSystemFileEntry} from "ngx-file-drop";
-import {Observable, throwError} from "rxjs";
+import {Observable, of, throwError} from "rxjs";
 import {VideoDto} from "../dto/video-dto";
 import {VideoPageDto} from "../dto/video-page-dto";
 import {catchError} from "rxjs/operators";
@@ -68,6 +68,30 @@ export class VideoService {
   getLikedVideos(page: number, size: number): Observable<VideoPageDto> {
     const url = `/api/video/liked?pageNumber=${page}&pageSize=${size}`;
     return this.httpClient.get<VideoPageDto>(url);
+  }
+
+  generateDownloadLinks(maxResolution: number, videoId: number): Array<[number, string]> {
+
+    let downloadLinks: Array<[number, string]> = [];
+
+    if (maxResolution >= 360) {
+      downloadLinks.push([360, `/api/video/download/${videoId}?quality=${360}p`]);
+    }
+
+    if (maxResolution >= 480) {
+      downloadLinks.push([480, `/api/video/download/${videoId}?quality=${480}p`]);
+    }
+
+    if (maxResolution >= 720) {
+      downloadLinks.push([720, `/api/video/download/${videoId}?quality=${720}p`]);
+
+    }
+
+    if (maxResolution >= 1080) {
+      downloadLinks.push([1080, `/api/video/download/${videoId}?quality=${1080}p`]);
+
+    }
+    return downloadLinks;
   }
 
 }

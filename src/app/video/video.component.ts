@@ -35,6 +35,8 @@ export class VideoComponent {
 
   videoResolution!: number | 360;
 
+  downloadLinks!: Array<[number, string]>;
+
   videoAvailable: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService, private userService: UserService) {
@@ -54,8 +56,14 @@ export class VideoComponent {
       this.isSubscribedToAuthor = data.isSubscribedToAuthor;
       this.videoResolution = data.videoResolution;
       // setTimeout(() => this.videoAvailable = true, 2000 )
+      this.downloadLinks = this.videoService.generateDownloadLinks(data.videoResolution, data.id);
+      // this.videoService.generateDownloadLinks(data.videoResolution, data.id).subscribe(links => {
+      //     this.downloadLinks = links;
+      //   }
+      // )
       this.videoAvailable = true;
-    })
+    });
+
   }
 
   onTagClick(tag: string) {
@@ -88,7 +96,7 @@ export class VideoComponent {
     })
   }
 
-  getUserId() : number {
+  getUserId(): number {
     return this.userService.getUserId();
   }
 }
