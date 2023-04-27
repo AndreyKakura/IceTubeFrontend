@@ -50,6 +50,7 @@ import {SpinnerComponent} from './spinner/spinner.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    MatExpansionModule,
   ],
   providers: [
     {

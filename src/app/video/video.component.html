@@ -46,9 +46,15 @@
     </mat-menu>
 
     <div *ngIf="isAuthor" class="m-t-10">
-      <hr/>
-      <h2>Вы - автор этого видео</h2>
-      <button mat-raised-button color="warn" (click)="deleteVideo()">Удалить</button>
+        <hr/>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Вы - автор этого видео
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <button mat-raised-button color="warn" (click)="deleteVideo()">Удалить</button>
+        </mat-expansion-panel>
     </div>
 
     <hr>

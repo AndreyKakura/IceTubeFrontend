@@ -96,7 +96,10 @@ export class VideoService {
 
   deleteVideo(id: number) {
     const url = `/api/video/${id}`;
-    this.httpClient.delete<VideoPageDto>(url);
+    console.log("deleting");
+    this.httpClient.delete<VideoPageDto>(url).subscribe(data =>{
+      console.log(data);
+    })
   }
 
 }
