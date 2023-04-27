@@ -56,7 +56,17 @@
           <button mat-raised-button color="warn" (click)="deleteVideo()">Удалить</button>
         </mat-expansion-panel>
     </div>
-
+    <div *ifRoles="['ROLE_ADMIN']" class="m-t-10">
+      <hr/>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Вы обладаете правами администратора
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <button mat-raised-button color="warn" (click)="deleteVideoAsAdministrator()">Удалить</button>
+      </mat-expansion-panel>
+    </div>
     <hr>
     <mat-chip-listbox>
       <mat-chip *ngFor="let tag of tags" (click)="onTagClick(tag)">

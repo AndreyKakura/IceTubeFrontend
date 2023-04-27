@@ -96,10 +96,11 @@ export class VideoService {
 
   deleteVideo(id: number) {
     const url = `/api/video/${id}`;
-    console.log("deleting");
-    this.httpClient.delete<VideoPageDto>(url).subscribe(data =>{
-      console.log(data);
-    })
+    return this.httpClient.delete<VideoPageDto>(url);
   }
 
+  deleteVideoAsAdministrator(id: number): Observable<any> {
+    const url = `/api/video/admin-delete/${id}`;
+    return this.httpClient.delete<VideoPageDto>(url);
+  }
 }

@@ -106,8 +106,18 @@ export class VideoComponent {
   }
 
   deleteVideo() {
-    this.videoService.deleteVideo(this.videoId);
-    this.matSnackBar.open('Видео безвозвратно удалено', 'Ок', {duration: 3000});
-    this.router.navigate(["user"]);
+    this.videoService.deleteVideo(this.videoId).subscribe(() => {
+        this.matSnackBar.open('Видео безвозвратно удалено', 'Ок', {duration: 3000});
+        this.router.navigate(["user"]);
+      }
+    );
+  }
+
+  deleteVideoAsAdministrator() {
+    this.videoService.deleteVideoAsAdministrator(this.videoId).subscribe(() => {
+      this.matSnackBar.open('Вы воспользовались правами администратора и удалили видео',
+        'Ок', {duration: 3000});
+      this.router.navigate(["home"]);
+    });
   }
 }
