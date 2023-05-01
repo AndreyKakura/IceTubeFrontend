@@ -72,7 +72,7 @@ export class VideoComponent {
   }
 
   onTagClick(tag: string) {
-    //todo
+    this.router.navigate(["/search", "tag", tag]);
   }
 
   likeVideo() {
