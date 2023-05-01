@@ -2,7 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../service/auth.service";
-import {NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, GuardsCheckEnd, NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -16,15 +16,28 @@ export class HeaderComponent {
   searchString = '';
 
   constructor(private authService: AuthService, private httpClient: HttpClient, private matSnackBar: MatSnackBar,
-              private router: Router) {
+              private router: Router, private activatedRoute: ActivatedRoute) {
+
+    // this.router.events.subscribe((val) => {
+    //   if (val instanceof NavigationEnd) {
+    //     console.log(this.activatedRoute.snapshot.params['selectedOption']);
+    //   }
+    // });
+
     router.events.subscribe((event) => {
+
       if (event instanceof NavigationEnd) {
-        if (event.urlAfterRedirects.split('/')[1] !== 'search') {
+        const urlParts = event.url.split('/');
+        if (urlParts[1] !== 'search') {
           this.searchString = '';
+        } else if (urlParts[1] == 'search') {
+          this.selectedOption = decodeURI(urlParts[2]);
+          this.searchString = decodeURI(urlParts[3]);
         }
       }
     });
   }
+
   search() {
     if (this.searchString !== '') {
       this.router.navigate(["/search", this.selectedOption, this.searchString]);
