@@ -13,3 +13,8 @@
   justify-content: center;
   gap: 10px;
 }
+
+.subs {
+  padding: 0px 95px;
+  margin-bottom: 30px;
+}
