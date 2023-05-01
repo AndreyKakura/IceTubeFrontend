@@ -70,6 +70,16 @@ export class VideoService {
     return this.httpClient.get<VideoPageDto>(url);
   }
 
+  getVideosByTitle(title: string, page: number, size: number): Observable<VideoPageDto> {
+    const url = `/api/video/findbytitle?title=${title}&pageNumber=${page}&pageSize=${size}`;
+    return this.httpClient.get<VideoPageDto>(url);
+  }
+
+  getVideosByTag(tag: string, page: number, size: number): Observable<VideoPageDto> {
+    const url = `/api/video/findbytag?tag=${tag}&pageNumber=${page}&pageSize=${size}`;
+    return this.httpClient.get<VideoPageDto>(url);
+  }
+
   generateDownloadLinks(maxResolution: number, videoId: number): Array<[number, string]> {
 
     let downloadLinks: Array<[number, string]> = [];

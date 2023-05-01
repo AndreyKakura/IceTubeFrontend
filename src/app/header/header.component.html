@@ -1,15 +1,30 @@
-<mat-toolbar>
-  <mat-toolbar-row>
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row class="toolbar-row">
     <!--    <button mat-icon-button (click)="toggleSidebar()">-->
     <!--      <mat-icon>menu</mat-icon>-->
     <!--    </button>-->
-    <div class="menu-button" (click)="toggleSidebar()">
-      <img class="menu-icon" src="assets/menu-icon.png" alt="menu_icon">
-    </div>
+      <div class="left-container">
+        <div class="menu-button" (click)="toggleSidebar()">
+          <img class="menu-icon" src="assets/menu-icon.png" alt="menu_icon">
+        </div>
+        <a mat-button routerLink="/home" class="icetube"><span class="ice">Ice</span><span class="tube">Tube</span></a>
+      </div>
 
-    <a mat-button routerLink="/home" class="icetube"><span class="ice">Ice</span><span class="tube">Tube</span></a>
+    <!-- <span class="example-spacer"></span> -->
 
-    <span class="example-spacer"></span>
+    <form class="search" (ngSubmit)="search()" >
+      <mat-form-field class="search__select" appearance="fill">
+        <mat-label>Поиск по:</mat-label>
+        <mat-select required [(value)]="selectedOption">
+          <mat-option value="title">Названию</mat-option>
+          <mat-option value="tag">Тэгу</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <input class="search__input" type="search" [(ngModel)]="searchString" name="searchString">
+      <button class="search__button" type="submit"><mat-icon>search</mat-icon></button>
+    </form>
+
+    <!-- <span class="example-spacer"></span> -->
 <!--    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">-->
 <!--      <img src="assets/profile-icon.png"  alt="profile-icon">-->
 <!--    </button>-->
@@ -35,7 +50,7 @@
 <!--      </button>-->
 <!--    </mat-menu>-->
 
-    <button mat-icon-button routerLink="/user">
+    <button mat-icon-button routerLink="/user" style="justify-self: end;">
       <img src="assets/profile-icon.png"  alt="profile-icon">
     </button>
   </mat-toolbar-row>

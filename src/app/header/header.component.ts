@@ -2,7 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../service/auth.service";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -12,8 +12,23 @@ import {Router} from "@angular/router";
 export class HeaderComponent {
   @Output() toggleSidenav = new EventEmitter<void>();
 
+  selectedOption = 'title'
+  searchString = '';
+
   constructor(private authService: AuthService, private httpClient: HttpClient, private matSnackBar: MatSnackBar,
               private router: Router) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.urlAfterRedirects.split('/')[1] !== 'search') {
+          this.searchString = '';
+        }
+      }
+    });
+  }
+  search() {
+    if (this.searchString !== '') {
+      this.router.navigate(["/search", this.selectedOption, this.searchString]);
+    }
   }
 
   testUser() {
