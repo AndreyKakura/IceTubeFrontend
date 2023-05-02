@@ -52,6 +52,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import {MatExpansionModule} from "@angular/material/expansion";
 import { SearchComponent } from './search/search.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { SearchComponent } from './search/search.component';
     IfAuthenticatedDirective,
     SpinnerComponent,
     SearchComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,

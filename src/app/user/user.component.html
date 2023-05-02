@@ -1,6 +1,10 @@
 <div>
-  <h2>IceTube Аккаунт</h2>
-  <p *ifAuthenticated='true'>Добро пожаловать, {{currentUser.name}} {{currentUser.surname}}!</p>
+  <h2>IceTube Профиль</h2>
+  <div *ifAuthenticated='true'>
+    <p>Добро пожаловать, {{currentUser.name}} {{currentUser.surname}}!</p>
+    <button mat-raised-button routerLink="/user-edit">Редактировать профиль</button>
+
+  </div>
   <div class="m-5">
     <button mat-raised-button *ifAuthenticated='false' routerLink="/login">
       <div class="profile-menu-button">

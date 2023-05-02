@@ -1,0 +1,32 @@
+<h2>Редактирование профиля</h2>
+
+<form [formGroup]="formGroup" >
+  <h3>Смена пароля</h3>
+  <input type="text" name="fake-username" style="display: none" >
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Старый пароль</mat-label>
+      <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="oldPassword" required>
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword">
+        <img *ngIf="!hidePassword" src="assets/hide-icon.png" alt="X">
+        <img *ngIf="hidePassword" src="assets/show-icon.png" alt="X">
+      </button>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Новый пароль</mat-label>
+      <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="newPassword" required>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Повторите новый пароль</mat-label>
+      <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="repeatedPassword" required>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button type="submit" (click)="changePassword()" color="primary">Сменить пароль</button>
+  </div>
+</form>

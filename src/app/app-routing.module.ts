@@ -13,6 +13,7 @@ import {LikedVideosComponent} from "./liked-videos/liked-videos.component";
 import {SubscriptionsComponent} from "./subscriptions/subscriptions.component";
 import {UserVideosComponent} from "./user-videos/user-videos.component";
 import {SearchComponent} from "./search/search.component";
+import {UserEditComponent} from "./user-edit/user-edit.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'user/likedvideos', component: LikedVideosComponent, canActivate: [RoleGuard], data: {role: 'ROLE_USER'}},
   {path: 'user/subscriptions', component: SubscriptionsComponent, canActivate: [RoleGuard], data: {role: 'ROLE_USER'}},
   {path: 'search/:selectedOption/:searchString', component: SearchComponent},
+  {path: 'user-edit', component: UserEditComponent, canActivate: [RoleGuard], data: {role: 'ROLE_USER'}},
   {
     path: 'user',
     component: UserComponent,
