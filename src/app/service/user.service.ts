@@ -5,6 +5,7 @@ import {VideoDto} from "../dto/video-dto";
 import {UserDto} from "../dto/user-dto";
 import {ChangePasswordDto} from "../dto/change-password-dto";
 import {catchError} from "rxjs/operators";
+import {ChangeNameAndSurnameDto} from "../dto/change-name-and-surname-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,18 @@ export class UserService {
 
   changePassword(changePasswordDto: ChangePasswordDto): Observable<Response> {
     return this.httpClient.post<Response>("/api/user/changepassword", changePasswordDto).pipe(
+      pipe(response => {
+        return response;
+      }),
+      catchError(err => {
+          return throwError(err);
+        }
+      )
+    )
+  }
+
+  changeNameAndSurname(changeNameAndSurnameDto: ChangeNameAndSurnameDto): Observable<Response> {
+    return this.httpClient.post<Response>("/api/user/change-name-and-surname", changeNameAndSurnameDto).pipe(
       pipe(response => {
         return response;
       }),
