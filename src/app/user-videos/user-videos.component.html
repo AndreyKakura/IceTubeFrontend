@@ -1,6 +1,6 @@
 <div *ngIf="user">
   <h2 class="center">Видео, опубликованные пользователем <span class="name">{{user.name}} {{user.surname}}</span>,
-    печально известным
+    известным
     как <span class="name">"{{user.username}}"</span></h2>
   <div class="center m-b-10" *ifAuthenticated='true'>
     <div *ngIf="getUserId() != user.id">
