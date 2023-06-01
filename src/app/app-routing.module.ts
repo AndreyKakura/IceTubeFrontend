@@ -1,19 +1,19 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UploadVideoComponent} from "./upload-video/upload-video.component";
-import {RegisterComponent} from "./register/register.component";
-import {LoginComponent} from "./login/login.component";
-import {HomeComponent} from "./home/home.component";
-import {UserComponent} from "./user/user.component";
+import {UploadVideoComponent} from "./component/upload-video/upload-video.component";
+import {RegisterComponent} from "./component/register/register.component";
+import {LoginComponent} from "./component/login/login.component";
+import {HomeComponent} from "./component/home/home.component";
+import {UserComponent} from "./component/user/user.component";
 import {RoleGuard} from "./guard/role.guard";
-import {NotFoundComponent} from "./not-found/not-found.component";
-import {VideoComponent} from "./video/video.component";
-import {HistoryComponent} from "./history/history.component";
-import {LikedVideosComponent} from "./liked-videos/liked-videos.component";
-import {SubscriptionsComponent} from "./subscriptions/subscriptions.component";
-import {UserVideosComponent} from "./user-videos/user-videos.component";
-import {SearchComponent} from "./search/search.component";
-import {UserEditComponent} from "./user-edit/user-edit.component";
+import {NotFoundComponent} from "./component/not-found/not-found.component";
+import {VideoComponent} from "./component/video/video.component";
+import {HistoryComponent} from "./component/history/history.component";
+import {LikedVideosComponent} from "./component/liked-videos/liked-videos.component";
+import {SubscriptionsComponent} from "./component/subscriptions/subscriptions.component";
+import {UserVideosComponent} from "./component/user-videos/user-videos.component";
+import {SearchComponent} from "./component/search/search.component";
+import {UserEditComponent} from "./component/user-edit/user-edit.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},

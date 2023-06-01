@@ -1,0 +1,42 @@
+<div>
+  <h2>IceTube Профиль</h2>
+  <div *ifAuthenticated='true'>
+    <p>Добро пожаловать, {{currentUser.name}} {{currentUser.surname}}!</p>
+    <button mat-raised-button routerLink="/user-edit">Редактировать профиль</button>
+
+  </div>
+  <div class="m-5">
+    <button mat-raised-button *ifAuthenticated='false' routerLink="/login">
+      <div class="profile-menu-button">
+        <img src="../../../assets/login-icon.png" class="icon" alt="login-icon">
+        <span>Войти</span>
+      </div>
+    </button>
+  </div>
+  <div class="m-5">
+    <button mat-raised-button *ifAuthenticated='false' routerLink="/register">
+      <div class="profile-menu-button">
+        <img src="../../../assets/register-icon.png" class="icon" alt="register-icon">
+        <span>Зарегистрироваться</span>
+      </div>
+    </button>
+  </div>
+  <div class="m-5">
+    <button mat-raised-button *ifAuthenticated='true' (click)="proceedLogout()">
+      <div class="profile-menu-button">
+        <img src="../../../assets/logout-icon.png" class="icon" alt="logout-icon">
+        <span>Выйти</span>
+      </div>
+    </button>
+  </div>
+  <div *ifAuthenticated='true'>
+  <hr/>
+  <h2 class="center">Опубликованные вами видео</h2>
+  <div class="list-video" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
+       (scrolled)="onScroll()">
+    <div *ngFor="let video of videos">
+      <app-video-card [video]="video"></app-video-card>
+    </div>
+  </div>
+  </div>
+</div>
